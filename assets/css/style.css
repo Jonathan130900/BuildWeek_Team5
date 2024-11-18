@@ -8,10 +8,16 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  font-family: "Ubuntu", sans-serif;
 }
 
 img {
   width: 15%;
   margin-top: 2vw;
   padding-left: 2vw;
+}
+
+#results div {
+  display: flex;
+  width: 100%;
 }
