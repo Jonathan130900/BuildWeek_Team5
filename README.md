@@ -1,4 +1,9 @@
-# BuildWeek_Team5
-
 # Benchmark BuildWeek
-Il codice presente in questa repository emula il benchmark che *EPICODE* sottopone ai ragazzi durante la settimana.
+
+##What does it do?
+The following Repo emulates the benchmark proposed by EPICODE to its students.
+
+##This is a team project proposed by EPICODE to implement students's skills in coding and teaming. (and committing as well).
+
+##How to use
+
