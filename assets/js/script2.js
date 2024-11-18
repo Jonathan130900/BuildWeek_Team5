@@ -95,4 +95,23 @@ const questions = [
 ];
 
 
+const timerDisplay = document.getElementById("timer");
+let durata = 20;
+
+function aggiornaTimer() {
+  timerDisplay.textContent = durata;
+  if (durata <= 10) {
+    timerDisplay.classList.add("fineTimer");
+  } else {
+    timerDisplay.classList.remove("fineTimer");
+  }
+
+  if (durata <= 0) {
+    durata = 20;
+  } else {
+    durata--;
+  }
+}
+
+const timerInterval = setInterval(aggiornaTimer, 1000);
 
