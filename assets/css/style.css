@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 img {
@@ -20,4 +20,8 @@ img {
 #results div {
   display: flex;
   width: 100%;
+}
+
+.fineTimer {
+  color: brown;
 }
