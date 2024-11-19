@@ -1,14 +1,24 @@
-html,
+html
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-image: url(/assets/img/bg.jpg);
+    max-width: 1920px;
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
     color: white;
+    padding-left: 8vw;
 }
 
-img {
-    width: 35%;
-    margin-top: 2vw ;
-    padding-left: 2vw;
+
+#logo {
+    margin-bottom: 4vw;
+    width: 15%;
+    margin-top: 3vw ;
+    
+}
+#title {
+    font-size: 4rem;
+
 }
