@@ -19,6 +19,9 @@ img {
   width: 100%;
 }
 
+
+
+
 .stars {
   display: inline-flex;
   cursor: pointer;
@@ -57,3 +60,4 @@ button:hover {
 .fineTimer {
   color: brown;
 }
+
