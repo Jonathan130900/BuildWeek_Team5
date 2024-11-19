@@ -21,3 +21,70 @@ img {
   display: flex;
   width: 100%;
 }
+
+/* Chart e percentuale risultati vengono messi in colonna per eventualmente mettere il chart al centro e allineare la percentuale ai lati simile al mockup */
+#resultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+#resultPage h1 {
+  font-size: 54px;
+  margin-bottom: 0;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#resultPage p {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+#resultsPercentage {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: 54px;
+}
+
+#resultsPercentage p {
+  font-size: 54px;
+}
+
+#percentageCorrect,
+#percentageWrong {
+  text-align: center;
+}
+
+/* Questo mette il chart posizionato al centro */
+#chartContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#buttonContainer {
+  text-align: center;
+}
+
+#btnRate {
+  border-color: white;
+  background: none;
+  color: white;
+  width: 200px;
+  height: 60px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.fineTimer {
+  color: brown;
+}

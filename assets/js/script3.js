@@ -11,7 +11,7 @@ function init() {
 }
 
 function flowchart(result, difference) {
-  const ctx = document.getElementById("myDoughnutChart").getContext("2d");
+  const ctx = document.getElementById("myPieChart").getContext("2d");
 
   const data = {
     labels: ["difference", "result"],
