@@ -6,10 +6,20 @@ let selectedRating = 0;
 const stars = document.querySelectorAll('.star');
 stars.forEach((star) => {
   star.addEventListener('mouseover', () => {
-    selectedRating = parseInt(star.getAttribute('data-value'));
-    updateStars(selectedRating);
+    const hoverRating = parseInt(star.getAttribute('data-value'));
+    updateStars(hoverRating);
   });
+  
+  star.addEventListener('mouseout', () => {
+  updateStars(selectedRating);
+}); 
+
+star.addEventListener('click', () => {
+  selectedRating = parseInt(star.getAttribute('data-value'));
+  updateStars(selectedRating);
 });
+
+})
 
 /* al posto di click abbiamo messo mouse over*/
 

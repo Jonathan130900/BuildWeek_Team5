@@ -16,7 +16,7 @@ const questions = [
     type: 'multiple',
     difficulty: 'easy',
     question:
-      'In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?',
+      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: 'Final',
     incorrect_answers: ['Static', 'Private', 'Public'],
   },
@@ -94,36 +94,46 @@ const questions = [
   },
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
+  drawCircle(1); // Disegna il cerchio pieno all'inizio
+  aggiornaTimer(); // Aggiorna il display del timer
+  timerInterval = setInterval(aggiornaTimer, 1000); // Avvia il timer
+  generaDomanda(); // Genera la prima domanda
+});
+
 const timerDisplay = document.getElementById('timer');
 const canvas = document.getElementById('timerCanvas');
 const grafica2d = canvas.getContext('2d');
-let durata = 20;
-const durataTotale = 20;
+let durata = 30; // Tempo iniziale
+const durataTotale = 30;
+let timerInterval; // Intervallo globale per gestire il timer
+const maxDomande = 10; // Numero massimo di domande
+let domandeMostrate = []; // Array per tenere traccia delle domande mostrate
+let contatoreDomande = 0; // Contatore per fermare il quiz
 
 function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = 60;
-  const startAngle = -Math.PI / 2; // Angolo di partenza
+  const startAngle = -Math.PI / 2;
   const endAngle = startAngle + 2 * Math.PI * percentage;
 
-  // Cancella il canvas
   grafica2d.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Disegna il cerchio di sfondo
+  // Cerchio di sfondo
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, 0, 2 * Math.PI);
   grafica2d.fillStyle = '#555';
   grafica2d.fill();
 
-  // Disegna il cerchio animato
+  // Cerchio del timer
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, startAngle, endAngle);
   grafica2d.lineWidth = 10;
   grafica2d.strokeStyle = '#00FF00';
   grafica2d.stroke();
 
-  // Disegna il timer rimanente al centro
+  // Timer testuale al centro
   grafica2d.font = '30px Arial';
   grafica2d.fillStyle = '#FFFFFF';
   grafica2d.textAlign = 'center';
@@ -132,30 +142,123 @@ function drawCircle(percentage, timeLeft) {
 }
 
 function aggiornaTimer() {
-  // Aggiorna il timer testuale
   timerDisplay.textContent = durata;
 
-  // Cambia stile negli ultimi 10 secondi
+  if (durata <= 5) {
+    timerDisplay.style.color = 'red'; // Avviso visivo per i pochi secondi rimasti
+    const audio = new Audio('warning-sound.mp3'); // Suono per avviso
+    audio.play();
+  } else {
+    timerDisplay.style.color = '#000'; // Reset colore timer
+  }
+
   if (durata <= 10) {
     timerDisplay.classList.add('fineTimer');
   } else {
     timerDisplay.classList.remove('fineTimer');
   }
 
-  // Calcola la percentuale rimanente e aggiorna il cerchio
   const percentage = durata / durataTotale;
   drawCircle(percentage, durata);
 
-  // Gestisci il decremento e il reset del timer
   if (durata <= 0) {
-    durata = durataTotale;
+    generaDomanda(); // Passa alla prossima domanda
+    resetTimer(); // Resetta il timer
   } else {
     durata--;
   }
 }
 
-// Disegna il cerchio pieno all'inizio
-drawCircle(1);
+function resetTimer() {
+  clearInterval(timerInterval);
+  durata = durataTotale;
+  aggiornaTimer();
+  timerInterval = setInterval(aggiornaTimer, 1000);
+}
+const localStorageKey = 'risposteCorrette';
+resetRisposteCorrette();
 
-// Avvia il timer
-const timerInterval = setInterval(aggiornaTimer, 1000);
+function resetRisposteCorrette() {
+  localStorage.setItem(localStorageKey, '0');
+}
+
+if (localStorage.getItem(localStorageKey) === null) {
+  localStorage.setItem(localStorageKey, '0');
+}
+
+function aggiornaRisposteCorrette() {
+  const punteggioCorrente = parseInt(localStorage.getItem(localStorageKey), 10);
+  localStorage.setItem(localStorageKey, (punteggioCorrente + 1).toString());
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function generaDomanda() {
+  if (contatoreDomande >= maxDomande) {
+    clearInterval(timerInterval);
+    canvas.style.display = 'none';
+    timerDisplay.style.display = 'none';
+
+    const divDomanda = document.getElementById('domande');
+    const punteggioFinale = localStorage.getItem(localStorageKey);
+    divDomanda.innerHTML = `<h2>Quiz terminato!</h2><p>Hai risposto correttamente a ${punteggioFinale} domande su ${maxDomande}.</p>`;
+
+    const bottoneProssimaPagina = document.createElement('button');
+    bottoneProssimaPagina.textContent = 'Go to Results';
+    bottoneProssimaPagina.classList.add('btn-prossima-pagina');
+    bottoneProssimaPagina.addEventListener('click', () => {
+      window.location.href = 'index-3.html';
+    });
+
+    divDomanda.appendChild(bottoneProssimaPagina);
+    return;
+  }
+
+  let indiceCasuale;
+  do {
+    indiceCasuale = Math.floor(Math.random() * questions.length);
+  } while (domandeMostrate.includes(indiceCasuale));
+
+  domandeMostrate.push(indiceCasuale);
+  contatoreDomande++;
+
+  const domandaSelezionata = questions[indiceCasuale];
+  const divDomanda = document.getElementById('domande');
+  divDomanda.innerHTML = '';
+
+  const intestazione = document.createElement('h2');
+  intestazione.textContent = domandaSelezionata.question;
+  intestazione.setAttribute('aria-live', 'polite');
+  divDomanda.appendChild(intestazione);
+
+  const risposte = [
+    ...domandaSelezionata.incorrect_answers,
+    domandaSelezionata.correct_answer,
+  ];
+  shuffleArray(risposte);
+
+  risposte.forEach((risposta) => {
+    const btnRisposta = document.createElement('button');
+    btnRisposta.textContent = risposta;
+    btnRisposta.classList.add('btn-risposta');
+    btnRisposta.addEventListener('click', () => {
+      if (risposta === domandaSelezionata.correct_answer) {
+        btnRisposta.style.backgroundColor = 'green';
+        aggiornaRisposteCorrette();
+        resetTimer();
+      } else {
+        btnRisposta.style.backgroundColor = 'red';
+        resetTimer();
+      }
+      setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
+      risposte.forEach((btn) => (btn.disabled = true)); // Disabilita i bottoni
+    });
+
+    divDomanda.appendChild(btnRisposta);
+  });
+}
