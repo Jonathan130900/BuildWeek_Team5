@@ -94,7 +94,7 @@ const questions = [
   },
 ];
 
-resetRisposteCorrette();
+
 
 document.addEventListener('DOMContentLoaded', () => {
   drawCircle(1); // Disegna il cerchio pieno all'inizio
@@ -112,6 +112,12 @@ let timerInterval; // Intervallo globale per gestire il timer
 const maxDomande = 10; // Numero massimo di domande
 let domandeMostrate = []; // Array per tenere traccia delle domande mostrate
 let contatoreDomande = 0; // Contatore per fermare il quiz
+const contatoreDisplay = document.getElementById('contatoreDomande'); // Elemento HTML per mostrare il contatore
+
+function aggiornaContatore() {
+  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
+}
+
 
 function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
@@ -177,8 +183,8 @@ function resetTimer() {
   aggiornaTimer();
   timerInterval = setInterval(aggiornaTimer, 1000);
 }
-
 const localStorageKey = 'risposteCorrette';
+resetRisposteCorrette();
 
 function resetRisposteCorrette() {
   localStorage.setItem(localStorageKey, '0');
@@ -249,10 +255,10 @@ function generaDomanda() {
       if (risposta === domandaSelezionata.correct_answer) {
         btnRisposta.style.backgroundColor = 'green';
         aggiornaRisposteCorrette();
-        setTimeout(() => alert('Risposta corretta!'), 200);
+        resetTimer();
       } else {
         btnRisposta.style.backgroundColor = 'red';
-        setTimeout(() => alert('Risposta errata!'), 200);
+        resetTimer();
       }
       setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
       risposte.forEach(btn => btn.disabled = true); // Disabilita i bottoni
