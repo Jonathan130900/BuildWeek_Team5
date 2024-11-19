@@ -159,3 +159,14 @@ drawCircle(1);
 
 // Avvia il timer
 const timerInterval = setInterval(aggiornaTimer, 1000);
+
+// Funzione per generare domande e risposte
+function generaDomanda() {
+  const indiceCasuale = Math.floor(Math.random() * questions.length);
+  const domandaSelezionata = questions[indiceCasuale]; 
+ return domandaSelezionata
+}
+
+// Mostra domanda
+
+// Mostra risposte come bottoni 
