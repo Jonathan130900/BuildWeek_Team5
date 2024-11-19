@@ -1,17 +1,18 @@
-const btnbutton = document.getElementById('btnFeedback');
+const btnButton = document.getElementById('btnFeedback');
+const star= document.getElementById('star')
 let selectedRating = 0;
 
 
 // Aggiungi il comportamento cliccabile alle stelle
 const stars = document.querySelectorAll('.star');
 stars.forEach((star) => {
-  star.addEventListener('mouseover', () => {
+  star.addEventListener(  'mouseover',() => {
     selectedRating = parseInt(star.getAttribute('data-value'));
     updateStars(selectedRating);
   });
 });
 
-/* al posto di click abbiamo messo mouse over*/
+/* al posto di click abbiamo messo mouseover*/
 
 function updateStars(rating) {
   stars.forEach((star) => {
@@ -40,6 +41,10 @@ function submitRating() {
   // Reset della valutazione (opzionale)
   selectedRating = 0;
   updateStars(selectedRating);
-  document.getElementById('feedback').value = '';
+  document.getElementById('btnfeedback').value = '';
+
 }
+
+
+
 
