@@ -1,6 +1,6 @@
 const btnbutton = document.getElementById('btnFeedback');
-const star= document.getElementById('star')
 let selectedRating = 0;
+
 
 // Aggiungi il comportamento cliccabile alle stelle
 const stars = document.querySelectorAll('.star');
