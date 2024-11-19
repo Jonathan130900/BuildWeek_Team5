@@ -145,11 +145,9 @@ function aggiornaTimer() {
   timerDisplay.textContent = durata;
 
   if (durata <= 5) {
-    timerDisplay.style.color = 'red'; // Avviso visivo per i pochi secondi rimasti
-    const audio = new Audio('warning-sound.mp3'); // Suono per avviso
-    audio.play();
+    timerDisplay.style.color = 'red';
   } else {
-    timerDisplay.style.color = '#000'; // Reset colore timer
+    timerDisplay.style.color = '#000';
   }
 
   if (durata <= 10) {
@@ -162,8 +160,8 @@ function aggiornaTimer() {
   drawCircle(percentage, durata);
 
   if (durata <= 0) {
-    generaDomanda(); // Passa alla prossima domanda
-    resetTimer(); // Resetta il timer
+    generaDomanda();
+    resetTimer();
   } else {
     durata--;
   }
@@ -175,6 +173,7 @@ function resetTimer() {
   aggiornaTimer();
   timerInterval = setInterval(aggiornaTimer, 1000);
 }
+
 const localStorageKey = 'risposteCorrette';
 resetRisposteCorrette();
 
@@ -255,8 +254,8 @@ function generaDomanda() {
         btnRisposta.style.backgroundColor = 'red';
         resetTimer();
       }
-      setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
-      risposte.forEach((btn) => (btn.disabled = true)); // Disabilita i bottoni
+      setTimeout(generaDomanda, 1000);
+      risposte.forEach((btn) => (btn.disabled = true));
     });
 
     divDomanda.appendChild(btnRisposta);
