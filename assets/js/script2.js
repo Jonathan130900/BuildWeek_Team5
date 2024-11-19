@@ -16,7 +16,7 @@ const questions = [
     type: 'multiple',
     difficulty: 'easy',
     question:
-      'In the programming language Java, which of these keywords would you put on a variable to make sure it doesn\'t get modified?',
+      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: 'Final',
     incorrect_answers: ['Static', 'Private', 'Public'],
   },
@@ -93,8 +93,6 @@ const questions = [
     incorrect_answers: ['Python', 'C', 'Jakarta'],
   },
 ];
-
-resetRisposteCorrette();
 
 document.addEventListener('DOMContentLoaded', () => {
   drawCircle(1); // Disegna il cerchio pieno all'inizio
@@ -177,8 +175,8 @@ function resetTimer() {
   aggiornaTimer();
   timerInterval = setInterval(aggiornaTimer, 1000);
 }
-
 const localStorageKey = 'risposteCorrette';
+resetRisposteCorrette();
 
 function resetRisposteCorrette() {
   localStorage.setItem(localStorageKey, '0');
@@ -238,10 +236,13 @@ function generaDomanda() {
   intestazione.setAttribute('aria-live', 'polite');
   divDomanda.appendChild(intestazione);
 
-  const risposte = [...domandaSelezionata.incorrect_answers, domandaSelezionata.correct_answer];
+  const risposte = [
+    ...domandaSelezionata.incorrect_answers,
+    domandaSelezionata.correct_answer,
+  ];
   shuffleArray(risposte);
 
-  risposte.forEach(risposta => {
+  risposte.forEach((risposta) => {
     const btnRisposta = document.createElement('button');
     btnRisposta.textContent = risposta;
     btnRisposta.classList.add('btn-risposta');
@@ -249,13 +250,13 @@ function generaDomanda() {
       if (risposta === domandaSelezionata.correct_answer) {
         btnRisposta.style.backgroundColor = 'green';
         aggiornaRisposteCorrette();
-        setTimeout(() => alert('Risposta corretta!'), 200);
+        resetTimer();
       } else {
         btnRisposta.style.backgroundColor = 'red';
-        setTimeout(() => alert('Risposta errata!'), 200);
+        resetTimer();
       }
       setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
-      risposte.forEach(btn => btn.disabled = true); // Disabilita i bottoni
+      risposte.forEach((btn) => (btn.disabled = true)); // Disabilita i bottoni
     });
 
     divDomanda.appendChild(btnRisposta);
