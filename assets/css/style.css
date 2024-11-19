@@ -7,7 +7,7 @@ html body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 img {
@@ -78,8 +78,6 @@ button:hover {
 .fineTimer {
   color: brown;
 }
-
-/* CSS Index-3 PIECHART */
 #results div {
   display: flex;
   width: 100%;
