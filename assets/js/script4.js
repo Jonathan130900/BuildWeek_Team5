@@ -3,11 +3,13 @@ let selectedRating = 0;
 // Aggiungi il comportamento cliccabile alle stelle
 const stars = document.querySelectorAll('.star');
 stars.forEach((star) => {
-  star.addEventListener('click', () => {
+  star.addEventListener('mouseover', () => {
     selectedRating = parseInt(star.getAttribute('data-value'));
     updateStars(selectedRating);
   });
 });
+
+/* al posto di click abbiamo messo mouse over*/
 
 function updateStars(rating) {
   stars.forEach((star) => {

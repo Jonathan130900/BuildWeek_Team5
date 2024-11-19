@@ -1,5 +1,5 @@
 html body {
-  margin: 0;
+  margin-left: 6vw;
   padding: 0;
   box-sizing: border-box;
   max-width: 1920px;
@@ -33,7 +33,10 @@ img {
 }
 .feedback-section {
   margin-top: 20px;
-}
+} 
+
+
+
 textarea {
   width: 100%;
   max-width: 400px;
