@@ -2,8 +2,12 @@ html body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  max-width: 1920px;
   background-image: url(/assets/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 img {
