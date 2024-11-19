@@ -101,7 +101,7 @@ const grafica2d = canvas.getContext("2d");
 let durata = 20;
 const durataTotale = 20;
 
-function drawCircle(percentage) {
+function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = 60;
@@ -123,6 +123,13 @@ function drawCircle(percentage) {
   grafica2d.lineWidth = 10;
   grafica2d.strokeStyle = "#00FF00";
   grafica2d.stroke();
+
+    // Disegna il timer rimanente al centro
+    grafica2d.font = "30px Arial";
+    grafica2d.fillStyle = "#FFFFFF";
+    grafica2d.textAlign = "center";
+    grafica2d.textBaseline = "middle";
+    grafica2d.fillText(timeLeft, centerX, centerY);
 }
 
 function aggiornaTimer() {
@@ -138,7 +145,7 @@ function aggiornaTimer() {
 
   // Calcola la percentuale rimanente e aggiorna il cerchio
   const percentage = durata / durataTotale;
-  drawCircle(percentage);
+  drawCircle(percentage, durata);
 
   // Gestisci il decremento e il reset del timer
   if (durata <= 0) {
