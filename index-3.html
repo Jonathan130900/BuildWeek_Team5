@@ -24,10 +24,12 @@
       <h1>Results</h1>
       <p>The summary of your answers:</p>
       <section id="results">
-        <div>
-          <canvas id="myDoughnutChart">
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-          </canvas>
+        <div id="resultsContainer">
+          <div id="chartContainer">
+            <canvas id="myPieChart">
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            </canvas>
+          </div>
           <div id="resultsPercentage">
             <div id="percentageCorrect">
               <p>Correct</p>
@@ -38,7 +40,9 @@
           </div>
         </div>
       </section>
-      <button type="button" id="btnRate">RATE US</button>
+      <div id="buttonContainer">
+        <button type="button" id="btnRate">RATE US!</button>
+      </div>
     </div>
 
     <script src="assets/js/script3.js"></script>
