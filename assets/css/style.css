@@ -1,5 +1,4 @@
-html,
-body {
+html body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,7 +11,7 @@ body {
 }
 
 img {
-  width: 15%;
+  width: 35%;
   margin-top: 2vw;
   padding-left: 2vw;
 }
@@ -20,8 +19,4 @@ img {
 #results div {
   display: flex;
   width: 100%;
-}
-
-.fineTimer {
-  color: brown;
 }
