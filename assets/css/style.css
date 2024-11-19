@@ -1,26 +1,39 @@
-html
-
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-image: url(/assets/img/bg.jpg);
-    color: white;
+html body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url(/assets/img/bg.jpg);
+  color: white;
 }
 
 img {
-    width: 35%;
-    margin-top: 2vw ;
-    padding-left: 2vw;
+  width: 20%;
+  height: 10%;
+  margin-top: 2vw;
+  padding-left: 2vw;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+main {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#questions {
+  display: inline-block;
 }
 
 #results div {
   display: flex;
   width: 100%;
 }
-
-
-
 
 .stars {
   display: inline-flex;
@@ -35,6 +48,7 @@ img {
 .feedback-section {
   margin-top: 20px;
 }
+
 textarea {
   width: 100%;
   max-width: 400px;
@@ -60,4 +74,3 @@ button:hover {
 .fineTimer {
   color: brown;
 }
-

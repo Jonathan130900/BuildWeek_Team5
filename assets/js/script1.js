@@ -11,5 +11,7 @@ function proceed(e) {
   e.preventDefault();
   if (checkbox.checked) {
     window.location.href = 'index-2.html';
+  } else {
+    window.alert('Check the promise box');
   }
 }
