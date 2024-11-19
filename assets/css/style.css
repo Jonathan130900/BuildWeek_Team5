@@ -20,3 +20,7 @@ img {
   display: flex;
   width: 100%;
 }
+
+.fineTimer {
+  color: brown;
+}
