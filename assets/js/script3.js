@@ -42,3 +42,6 @@ function flowchart(result, difference) {
   // Crea il grafico
   new Chart(ctx, config);
 }
+btnRate.addEventListener('click', function () {
+  window.location.href = 'index-4.html';
+});
