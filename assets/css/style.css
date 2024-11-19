@@ -1,5 +1,5 @@
 html body {
-  margin-left: 6vw;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   max-width: 1920px;
@@ -12,8 +12,26 @@ html body {
 
 img {
   width: 20%;
+  height: 10%;
   margin-top: 2vw;
   padding-left: 2vw;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+main {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#questions {
+  display: inline-block;
 }
 
 #results div {
@@ -33,9 +51,7 @@ img {
 }
 .feedback-section {
   margin-top: 20px;
-} 
-
-
+}
 
 textarea {
   width: 100%;
