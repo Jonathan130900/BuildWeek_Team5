@@ -61,6 +61,7 @@ textarea {
   padding: 10px;
   font-size: 1rem;
 }
+
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -131,18 +132,15 @@ button:hover {
   justify-content: center;
 }
 
-#buttonContainer {
-  text-align: center;
-}
-
 #btnRate {
   border: 1px;
-  border-color: white;
   background: none;
   color: white;
-  width: 200px;
-  height: 60px;
   font-weight: bold;
   font-size: 20px;
   margin-top: 30px;
+}
+
+#btnRate:hover {
+  font-size: 25px;
 }

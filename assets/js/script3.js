@@ -3,12 +3,24 @@ const btnRate = document.getElementById("btnRate");
 //const risposteCorrette = localStorage.getItem(localStorageKey);
 
 const result = 6;
-const difference = 10 - result;
+const difference = 4;
 
 document.addEventListener("load", init());
 
 function init() {
   flowchart(result, difference);
+  displayResultText(result);
+}
+
+function displayResultText(result) {
+  const resultText = document.getElementById("resultText");
+
+  if (result >= 6) {
+    resultText.textContent = "Complimenti, hai passato il test!";
+  } else if (difference >= 5) {
+    resultText.textContent =
+      "Peccato, non hai passato il test! Puoi riprovare quante volte vuoi.";
+  }
 }
 
 function flowchart(result, difference) {
