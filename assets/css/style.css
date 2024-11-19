@@ -11,7 +11,7 @@ html body {
 }
 
 img {
-  width: 35%;
+  width: 20%;
   margin-top: 2vw;
   padding-left: 2vw;
 }
@@ -20,9 +20,6 @@ img {
   display: flex;
   width: 100%;
 }
-
-
-
 
 .stars {
   display: inline-flex;
@@ -62,4 +59,3 @@ button:hover {
 .fineTimer {
   color: brown;
 }
-
