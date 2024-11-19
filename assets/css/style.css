@@ -45,6 +45,25 @@ img {
   margin-bottom: 35px;
 }
 
+#resultsPercentage {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: 54px;
+}
+
+#resultsPercentage p {
+  font-size: 54px;
+}
+
+#percentageCorrect,
+#percentageWrong {
+  text-align: center;
+}
+
 /* Questo mette il chart posizionato al centro */
 #chartContainer {
   display: flex;
