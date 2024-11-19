@@ -94,10 +94,9 @@ const questions = [
   },
 ];
 
-
-const timerDisplay = document.getElementById("timer");
-const canvas = document.getElementById("timerCanvas");
-const grafica2d = canvas.getContext("2d");
+const timerDisplay = document.getElementById('timer');
+const canvas = document.getElementById('timerCanvas');
+const grafica2d = canvas.getContext('2d');
 let durata = 20;
 const durataTotale = 20;
 
@@ -106,7 +105,7 @@ function drawCircle(percentage, timeLeft) {
   const centerY = canvas.height / 2;
   const radius = 60;
   const startAngle = -Math.PI / 2; // Angolo di partenza
-  const endAngle = startAngle + (2 * Math.PI * percentage);
+  const endAngle = startAngle + 2 * Math.PI * percentage;
 
   // Cancella il canvas
   grafica2d.clearRect(0, 0, canvas.width, canvas.height);
@@ -114,22 +113,22 @@ function drawCircle(percentage, timeLeft) {
   // Disegna il cerchio di sfondo
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-  grafica2d.fillStyle = "#555";
+  grafica2d.fillStyle = '#555';
   grafica2d.fill();
 
   // Disegna il cerchio animato
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, startAngle, endAngle);
   grafica2d.lineWidth = 10;
-  grafica2d.strokeStyle = "#00FF00";
+  grafica2d.strokeStyle = '#00FF00';
   grafica2d.stroke();
 
-    // Disegna il timer rimanente al centro
-    grafica2d.font = "30px Arial";
-    grafica2d.fillStyle = "#FFFFFF";
-    grafica2d.textAlign = "center";
-    grafica2d.textBaseline = "middle";
-    grafica2d.fillText(timeLeft, centerX, centerY);
+  // Disegna il timer rimanente al centro
+  grafica2d.font = '30px Arial';
+  grafica2d.fillStyle = '#FFFFFF';
+  grafica2d.textAlign = 'center';
+  grafica2d.textBaseline = 'middle';
+  grafica2d.fillText(timeLeft, centerX, centerY);
 }
 
 function aggiornaTimer() {
@@ -138,9 +137,9 @@ function aggiornaTimer() {
 
   // Cambia stile negli ultimi 10 secondi
   if (durata <= 10) {
-    timerDisplay.classList.add("fineTimer");
+    timerDisplay.classList.add('fineTimer');
   } else {
-    timerDisplay.classList.remove("fineTimer");
+    timerDisplay.classList.remove('fineTimer');
   }
 
   // Calcola la percentuale rimanente e aggiorna il cerchio
