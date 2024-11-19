@@ -42,7 +42,7 @@ function submitRating() {
       "<p style='color: red;'>Per favore, seleziona una valutazione!</p>";
     return;
   }
-
+window.alert('Grazie per il feedback');
   resultDiv.innerHTML = `
                 <p>Grazie per la tua valutazione di ${selectedRating} stelle!</p>
                 <p>Commento: ${feedback || 'Nessun commento lasciato.'}</p>
