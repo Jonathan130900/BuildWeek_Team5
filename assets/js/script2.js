@@ -94,8 +94,6 @@ const questions = [
   },
 ];
 
-resetRisposteCorrette();
-
 document.addEventListener('DOMContentLoaded', () => {
   drawCircle(1); // Disegna il cerchio pieno all'inizio
   aggiornaTimer(); // Aggiorna il display del timer
@@ -180,27 +178,15 @@ function resetTimer() {
   aggiornaTimer();
   timerInterval = setInterval(aggiornaTimer, 1000);
 }
-const localStorageKey = 'risposteCorrette';
-resetRisposteCorrette();
-
-function resetRisposteCorrette() {
-  localStorage.setItem(localStorageKey, '0');
-}
-
-if (localStorage.getItem(localStorageKey) === null) {
-  localStorage.setItem(localStorageKey, '0');
-}
-
-function aggiornaRisposteCorrette() {
-  const punteggioCorrente = parseInt(localStorage.getItem(localStorageKey), 10);
-  localStorage.setItem(localStorageKey, (punteggioCorrente + 1).toString());
-}
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+function aggiornaContatore() {
+  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
 }
 
 function generaDomanda() {
@@ -210,8 +196,7 @@ function generaDomanda() {
     timerDisplay.style.display = 'none';
 
     const divDomanda = document.getElementById('domande');
-    const punteggioFinale = localStorage.getItem(localStorageKey);
-    divDomanda.innerHTML = `<h2>Quiz terminato!</h2><p>Hai risposto correttamente a ${punteggioFinale} domande su ${maxDomande}.</p>`;
+    divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
 
     const bottoneProssimaPagina = document.createElement('button');
     bottoneProssimaPagina.textContent = 'Go to Results';
@@ -231,6 +216,8 @@ function generaDomanda() {
 
   domandeMostrate.push(indiceCasuale);
   contatoreDomande++;
+
+  aggiornaContatore(); // Aggiorna il contatore di domande
 
   const domandaSelezionata = questions[indiceCasuale];
   const divDomanda = document.getElementById('domande');
@@ -254,7 +241,6 @@ function generaDomanda() {
     btnRisposta.addEventListener('click', () => {
       if (risposta === domandaSelezionata.correct_answer) {
         btnRisposta.style.backgroundColor = 'green';
-        aggiornaRisposteCorrette();
         resetTimer();
       } else {
         btnRisposta.style.backgroundColor = 'red';
