@@ -8,7 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 img {
@@ -21,7 +21,11 @@ img {
   display: flex;
   width: 100%;
 }
+/*
+#chartContainer {
 
+}
+*/
 .fineTimer {
   color: brown;
 }
