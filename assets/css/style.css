@@ -1,14 +1,61 @@
-html,
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-image: url(/assets/img/bg.jpg);
-    color: white;
+html body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 1920px;
+  background-image: url(/assets/img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 img {
-    width: 35%;
-    margin-top: 2vw ;
-    padding-left: 2vw;
+  width: 35%;
+  margin-top: 2vw;
+  padding-left: 2vw;
+}
+
+#results div {
+  display: flex;
+  width: 100%;
+}
+
+.stars {
+  display: inline-flex;
+  cursor: pointer;
+  font-size: 2rem;
+  color: rgb(32, 35, 77);
+}
+.stars .star:hover,
+.stars .star.active {
+  color: rgb(68, 243, 255);
+}
+.feedback-section {
+  margin-top: 20px;
+}
+textarea {
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+.fineTimer {
+  color: brown;
 }

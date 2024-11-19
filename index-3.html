@@ -7,17 +7,44 @@
       name="description"
       content="Creazione del benchmark Epicode da parte del Team 5"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>Benchmark Team 5</title>
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <div>
-      <img src="assets/ímg/epicode_logo.png" alt="Logo Epicode" />
+    <header>
+      <img src="assets/img/epicode_logo.png" alt="Logo Epicode" />
+    </header>
+    <div id="resultPage">
       <h1>Results</h1>
       <p>The summary of your answers:</p>
-      <section id="results"></section>
-      <button type="button" id="btnRate">RATE US</button>
+      <section id="results">
+        <div id="resultsContainer">
+          <div id="chartContainer">
+            <canvas id="myPieChart">
+              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            </canvas>
+          </div>
+          <div id="resultsPercentage">
+            <div id="percentageCorrect">
+              <p>Correct</p>
+            </div>
+            <div id="percentageWrong">
+              <p>Wrong</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div id="buttonContainer">
+        <button type="button" id="btnRate">RATE US!</button>
+      </div>
     </div>
-    <script src="assets/js/script.js"></script>
+
+    <script src="assets/js/script3.js"></script>
   </body>
 </html>
