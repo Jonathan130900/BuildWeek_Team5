@@ -16,7 +16,7 @@ const questions = [
     type: 'multiple',
     difficulty: 'easy',
     question:
-      'In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?',
+      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: 'Final',
     incorrect_answers: ['Static', 'Private', 'Public'],
   },
@@ -94,36 +94,97 @@ const questions = [
   },
 ];
 
+document.addEventListener('DOMContentLoaded', () => {
+  iniziaCountdown();
+});
+
 const timerDisplay = document.getElementById('timer');
 const canvas = document.getElementById('timerCanvas');
 const grafica2d = canvas.getContext('2d');
-let durata = 20;
-const durataTotale = 20;
+let durata = 30; // Tempo iniziale
+const durataTotale = 30;
+let timerInterval; // Intervallo globale per gestire il timer
+const maxDomande = 10; // Numero massimo di domande
+let domandeMostrate = []; // Array per tenere traccia delle domande mostrate
+let contatoreDomande = 0; // Contatore per fermare il quiz
+const contatoreDisplay = document.getElementById('contatoreDomande'); // Elemento HTML per mostrare il contatore
+
+function iniziaCountdown() {
+  // Nascondi il contatore delle domande
+  contatoreDisplay.style.display = 'none';
+
+  // Crea la frase "Quiz starts in"
+  const countdownWrapper = document.createElement('div');
+  countdownWrapper.id = 'countdownWrapper';
+  countdownWrapper.style.textAlign = 'center';
+  countdownWrapper.style.margin = '20px 0';
+
+  const countdownText = document.createElement('p');
+  countdownText.id = 'startCountdownP';
+  countdownText.textContent = 'Quiz starts in';
+  countdownText.style.fontSize = '24px';
+  countdownText.style.marginBottom = '10px';
+
+  const countdownDisplay = document.createElement('div');
+  countdownDisplay.id = 'startCountdownDiv';
+  countdownDisplay.textContent = '3';
+
+  countdownWrapper.appendChild(countdownText);
+  countdownWrapper.appendChild(countdownDisplay);
+  document.body.appendChild(countdownWrapper);
+
+  let countdownValue = 3;
+
+  const countdownInterval = setInterval(() => {
+    countdownValue--;
+    countdownDisplay.textContent = countdownValue;
+
+    if (countdownValue <= 0) {
+      clearInterval(countdownInterval);
+      countdownWrapper.remove(); // Rimuove il countdown dallo schermo
+
+      // Mostra il contatore delle domande
+      contatoreDisplay.style.display = 'block';
+
+      avviaQuiz(); // Avvia il timer principale e genera la prima domanda
+    }
+  }, 1000);
+}
+
+function avviaQuiz() {
+  drawCircle(1); // Disegna il cerchio pieno all'inizio
+  aggiornaTimer(); // Aggiorna il display del timer
+  timerInterval = setInterval(aggiornaTimer, 1000); // Avvia il timer
+  generaDomanda(); // Genera la prima domanda
+}
+
+function aggiornaContatore() {
+  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
+}
 
 function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
   const radius = 60;
-  const startAngle = -Math.PI / 2; // Angolo di partenza
+  const startAngle = -Math.PI / 2;
   const endAngle = startAngle + 2 * Math.PI * percentage;
 
-  // Cancella il canvas
   grafica2d.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Disegna il cerchio di sfondo
+  // Cerchio di sfondo
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, 0, 2 * Math.PI);
   grafica2d.fillStyle = '#555';
   grafica2d.fill();
 
-  // Disegna il cerchio animato
+  // Cerchio del timer
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, startAngle, endAngle);
   grafica2d.lineWidth = 10;
   grafica2d.strokeStyle = '#00FF00';
   grafica2d.stroke();
 
-  // Disegna il timer rimanente al centro
+  // Timer testuale al centro
   grafica2d.font = '30px Arial';
   grafica2d.fillStyle = '#FFFFFF';
   grafica2d.textAlign = 'center';
@@ -132,30 +193,129 @@ function drawCircle(percentage, timeLeft) {
 }
 
 function aggiornaTimer() {
-  // Aggiorna il timer testuale
   timerDisplay.textContent = durata;
 
-  // Cambia stile negli ultimi 10 secondi
+  if (durata <= 5) {
+    timerDisplay.style.color = 'red';
+  } else {
+    timerDisplay.style.color = '#000';
+  }
+
   if (durata <= 10) {
     timerDisplay.classList.add('fineTimer');
   } else {
     timerDisplay.classList.remove('fineTimer');
   }
 
-  // Calcola la percentuale rimanente e aggiorna il cerchio
   const percentage = durata / durataTotale;
   drawCircle(percentage, durata);
 
-  // Gestisci il decremento e il reset del timer
   if (durata <= 0) {
-    durata = durataTotale;
+    generaDomanda();
+    resetTimer();
   } else {
     durata--;
   }
 }
 
-// Disegna il cerchio pieno all'inizio
-drawCircle(1);
+function resetTimer() {
+  clearInterval(timerInterval);
+  durata = durataTotale;
+  aggiornaTimer();
+  timerInterval = setInterval(aggiornaTimer, 1000);
+}
 
-// Avvia il timer
-const timerInterval = setInterval(aggiornaTimer, 1000);
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+function aggiornaContatore() {
+  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
+}
+
+// Funzione per aggiornare il punteggio
+function aggiornaPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter')) || [];
+  data.score += 1; // Incrementa il punteggio di 1
+  localStorage.setItem('trueCounter', JSON.stringify(data));
+}
+
+// Modifica nella funzione `generaDomanda`
+function generaDomanda() {
+  if (contatoreDomande >= maxDomande) {
+    clearInterval(timerInterval);
+    canvas.style.display = 'none';
+    timerDisplay.style.display = 'none';
+
+    const divDomanda = document.getElementById('domande');
+    divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
+
+    const bottoneProssimaPagina = document.createElement('button');
+    bottoneProssimaPagina.textContent = 'Go to Results';
+    bottoneProssimaPagina.id = 'btnNextPage2';
+    bottoneProssimaPagina.addEventListener('click', () => {
+      window.location.href = 'index-3.html';
+    });
+
+    divDomanda.appendChild(bottoneProssimaPagina);
+
+    return;
+  }
+
+  let indiceCasuale;
+  do {
+    indiceCasuale = Math.floor(Math.random() * questions.length);
+  } while (domandeMostrate.includes(indiceCasuale));
+
+  domandeMostrate.push(indiceCasuale);
+  contatoreDomande++;
+
+  aggiornaContatore(); // Aggiorna il contatore di domande
+
+  const domandaSelezionata = questions[indiceCasuale];
+  const divQuestion = document.getElementById('domande');
+  divQuestion.innerHTML = '';
+
+  const intestazione = document.createElement('h2');
+  intestazione.id = 'QuestionH2';
+  intestazione.textContent = domandaSelezionata.question;
+  intestazione.setAttribute('aria-live', 'polite');
+  divQuestion.appendChild(intestazione);
+
+  const risposte = [
+    ...domandaSelezionata.incorrect_answers,
+    domandaSelezionata.correct_answer,
+  ];
+  shuffleArray(risposte);
+
+  // Crea un array per mantenere i riferimenti ai pulsanti di risposta
+  const buttons = [];
+
+  risposte.forEach((answer) => {
+    const btnAnswer = document.createElement('button');
+    btnAnswer.textContent = answer;
+    btnAnswer.id = 'btnAnswers';
+    btnAnswer.addEventListener('click', () => {
+      // Disabilita tutti i pulsanti
+      buttons.forEach((btn) => (btn.disabled = true));
+
+      // Aggiungi una classe personalizzata in base al risultato
+      if (answer === domandaSelezionata.correct_answer) {
+        btnAnswer.classList.add('correct-answer');
+        aggiornaPunteggio();
+      } else {
+        btnAnswer.classList.add('incorrect-answer');
+      }
+
+      setTimeout(() => {
+        resetTimer();
+        generaDomanda();
+      }, 1000);
+    });
+
+    buttons.push(btnAnswer); // Aggiungi il pulsante all'array
+    divQuestion.appendChild(btnAnswer);
+  });
+}

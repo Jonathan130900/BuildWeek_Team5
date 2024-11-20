@@ -1,8 +1,9 @@
-html body {
-  margin-left: 6vw;
+html,
+body {
+  margin: 0;
   padding: 0;
+  min-height: 100vh;
   box-sizing: border-box;
-  max-width: 1920px;
   background-image: url(/assets/img/bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,9 +12,62 @@ html body {
 }
 
 img {
-  width: 35%;
+  width: 20%;
+  height: 10%;
   margin-top: 2vw;
   padding-left: 2vw;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+main {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#welcomePage {
+  font-size: 2rem;
+  margin-top: 10rem;
+}
+
+#welcomePage ul {
+  list-style-type: none;
+  line-height: 50px;
+  text-align: left;
+  padding: 0;
+}
+#welcomePage p {
+  border-bottom: 2px solid #c2128d;
+  padding-bottom: 20px;
+}
+
+#welcomePage section {
+  display: flex;
+  justify-content: space-between;
+  border: 5px solid #c2128d;
+  padding: 15px;
+}
+
+#checkbox {
+  cursor: pointer;
+  transform: scale(2.5);
+  text-align: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+#startCountdownDiv {
+  font-size: 100px;
+}
+
+#questions {
+  display: inline-block;
 }
 
 #results div {
@@ -34,9 +88,7 @@ img {
 }
 .feedback-section {
   margin-top: 20px;
-} 
-
-
+}
 
 textarea {
   width: 100%;
@@ -46,20 +98,117 @@ textarea {
   padding: 10px;
   font-size: 1rem;
 }
-button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
+#btnNextPage1,
+#btnNextPage2,
+#btnRate {
+  width: 15rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: blue;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
 }
+
+#btnAnswers {
+  width: 10em;
+  height: 2em;
+  font-size: 2em;
+}
+
+/* Pulsante corretto */
+.correct-answer {
+  background-color: green;
+  color: white;
+}
+
+/* Pulsante errato */
+.incorrect-answer {
+  background-color: red;
+  color: white;
+}
+
+/* Pulsanti disabilitati con stili personalizzati */
+button:disabled.correct-answer {
+  background-color: green;
+  color: white;
+  opacity: 1; /* Sovrascrivi la trasparenza predefinita */
+  cursor: not-allowed; /* Mostra che è disabilitato */
+}
+
+button:disabled.incorrect-answer {
+  background-color: red;
+  color: white;
+  opacity: 1;
+  cursor: not-allowed;
+}
+
 button:hover {
   background-color: #0056b3;
 }
 
+#contatoreDomande {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 200px;
+}
+
 .fineTimer {
   color: brown;
+}
+#results div {
+  display: flex;
+  width: 100%;
+}
+
+/* Chart e percentuale risultati vengono messi in colonna per eventualmente mettere il chart al centro e allineare la percentuale ai lati simile al mockup */
+#resultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+#resultPage h1 {
+  font-size: 54px;
+  margin-bottom: 0;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#resultPage p {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+}
+
+#resultsPercentage {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  font-size: 54px;
+}
+#resultsPercentage p {
+  font-size: 54px;
+}
+/* Centrato nei loro div corrette e sbagliate */
+#percentageCorrect,
+#percentageWrong {
+  justify-content: center;
+}
+/* Questo mette il chart posizionato al centro */
+#chartContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#buttonContainer {
+  text-align: center;
 }

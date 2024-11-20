@@ -20,8 +20,7 @@ function flowchart(result, difference) {
         label: 'Risultati',
         data: [difference, result], // DA AGGIUNGERE RISULTATI QUIZ
         backgroundColor: ['#C2128D', '#00FFFF'],
-        borderColor: ['#00FFFF', '#C2128D'],
-        borderWidth: 1,
+        borderColor: ['#C2128D', '#00FFFF'],
       },
     ],
   };
@@ -41,4 +40,20 @@ function flowchart(result, difference) {
 
   // Crea il grafico
   new Chart(ctx, config);
+}
+btnRate.addEventListener('click', function () {
+  window.location.href = 'index-4.html';
+  resetPunteggio();
+});
+
+// Funzione per ottenere il punteggio corrente
+function ottieniPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter'));
+  return data.score;
+}
+const punteggioFinale = ottieniPunteggio();
+
+// Funzione per resettare il punteggio
+function resetPunteggio() {
+  localStorage.setItem('trueCounter', JSON.stringify({ score: 0 }));
 }
