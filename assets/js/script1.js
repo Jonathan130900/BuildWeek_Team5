@@ -1,4 +1,4 @@
-const btnNext = document.getElementById('proceed');
+const btnNext = document.getElementById('btnNextPage1');
 const checkbox = document.getElementById('checkbox');
 
 btnNext.addEventListener('click', proceed);

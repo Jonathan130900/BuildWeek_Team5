@@ -95,10 +95,7 @@ const questions = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  drawCircle(1); // Disegna il cerchio pieno all'inizio
-  aggiornaTimer(); // Aggiorna il display del timer
-  timerInterval = setInterval(aggiornaTimer, 1000); // Avvia il timer
-  generaDomanda(); // Genera la prima domanda
+  iniziaCountdown();
 });
 
 const timerDisplay = document.getElementById('timer');
@@ -111,6 +108,55 @@ const maxDomande = 10; // Numero massimo di domande
 let domandeMostrate = []; // Array per tenere traccia delle domande mostrate
 let contatoreDomande = 0; // Contatore per fermare il quiz
 const contatoreDisplay = document.getElementById('contatoreDomande'); // Elemento HTML per mostrare il contatore
+
+function iniziaCountdown() {
+  // Nascondi il contatore delle domande
+  contatoreDisplay.style.display = 'none';
+
+  // Crea la frase "Quiz starts in"
+  const countdownWrapper = document.createElement('div');
+  countdownWrapper.id = 'countdownWrapper';
+  countdownWrapper.style.textAlign = 'center';
+  countdownWrapper.style.margin = '20px 0';
+
+  const countdownText = document.createElement('p');
+  countdownText.id = 'startCountdownP';
+  countdownText.textContent = 'Quiz starts in';
+  countdownText.style.fontSize = '24px';
+  countdownText.style.marginBottom = '10px';
+
+  const countdownDisplay = document.createElement('div');
+  countdownDisplay.id = 'startCountdownDiv';
+  countdownDisplay.textContent = '3';
+
+  countdownWrapper.appendChild(countdownText);
+  countdownWrapper.appendChild(countdownDisplay);
+  document.body.appendChild(countdownWrapper);
+
+  let countdownValue = 3;
+
+  const countdownInterval = setInterval(() => {
+    countdownValue--;
+    countdownDisplay.textContent = countdownValue;
+
+    if (countdownValue <= 0) {
+      clearInterval(countdownInterval);
+      countdownWrapper.remove(); // Rimuove il countdown dallo schermo
+
+      // Mostra il contatore delle domande
+      contatoreDisplay.style.display = 'block';
+
+      avviaQuiz(); // Avvia il timer principale e genera la prima domanda
+    }
+  }, 1000);
+}
+
+function avviaQuiz() {
+  drawCircle(1); // Disegna il cerchio pieno all'inizio
+  aggiornaTimer(); // Aggiorna il display del timer
+  timerInterval = setInterval(aggiornaTimer, 1000); // Avvia il timer
+  generaDomanda(); // Genera la prima domanda
+}
 
 function aggiornaContatore() {
   contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
@@ -189,6 +235,14 @@ function aggiornaContatore() {
   contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
 }
 
+// Funzione per aggiornare il punteggio
+function aggiornaPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter')) || [];
+  data.score += 1; // Incrementa il punteggio di 1
+  localStorage.setItem('trueCounter', JSON.stringify(data));
+}
+
+// Modifica nella funzione `generaDomanda`
 function generaDomanda() {
   if (contatoreDomande >= maxDomande) {
     clearInterval(timerInterval);
@@ -200,12 +254,13 @@ function generaDomanda() {
 
     const bottoneProssimaPagina = document.createElement('button');
     bottoneProssimaPagina.textContent = 'Go to Results';
-    bottoneProssimaPagina.classList.add('btn-prossima-pagina');
+    bottoneProssimaPagina.id = 'btnNextPage2';
     bottoneProssimaPagina.addEventListener('click', () => {
       window.location.href = 'index-3.html';
     });
 
     divDomanda.appendChild(bottoneProssimaPagina);
+
     return;
   }
 
@@ -220,13 +275,14 @@ function generaDomanda() {
   aggiornaContatore(); // Aggiorna il contatore di domande
 
   const domandaSelezionata = questions[indiceCasuale];
-  const divDomanda = document.getElementById('domande');
-  divDomanda.innerHTML = '';
+  const divQuestion = document.getElementById('domande');
+  divQuestion.innerHTML = '';
 
   const intestazione = document.createElement('h2');
+  intestazione.id = 'QuestionH2';
   intestazione.textContent = domandaSelezionata.question;
   intestazione.setAttribute('aria-live', 'polite');
-  divDomanda.appendChild(intestazione);
+  divQuestion.appendChild(intestazione);
 
   const risposte = [
     ...domandaSelezionata.incorrect_answers,
@@ -234,22 +290,32 @@ function generaDomanda() {
   ];
   shuffleArray(risposte);
 
-  risposte.forEach((risposta) => {
-    const btnRisposta = document.createElement('button');
-    btnRisposta.textContent = risposta;
-    btnRisposta.classList.add('btn-risposta');
-    btnRisposta.addEventListener('click', () => {
-      if (risposta === domandaSelezionata.correct_answer) {
-        btnRisposta.style.backgroundColor = 'green';
-        resetTimer();
+  // Crea un array per mantenere i riferimenti ai pulsanti di risposta
+  const buttons = [];
+
+  risposte.forEach((answer) => {
+    const btnAnswer = document.createElement('button');
+    btnAnswer.textContent = answer;
+    btnAnswer.id = 'btnAnswers';
+    btnAnswer.addEventListener('click', () => {
+      // Disabilita tutti i pulsanti
+      buttons.forEach((btn) => (btn.disabled = true));
+
+      // Aggiungi una classe personalizzata in base al risultato
+      if (answer === domandaSelezionata.correct_answer) {
+        btnAnswer.classList.add('correct-answer');
+        aggiornaPunteggio();
       } else {
-        btnRisposta.style.backgroundColor = 'red';
-        resetTimer();
+        btnAnswer.classList.add('incorrect-answer');
       }
-      setTimeout(generaDomanda, 1000);
-      risposte.forEach((btn) => (btn.disabled = true));
+
+      setTimeout(() => {
+        resetTimer();
+        generaDomanda();
+      }, 1000);
     });
 
-    divDomanda.appendChild(btnRisposta);
+    buttons.push(btnAnswer); // Aggiungi il pulsante all'array
+    divQuestion.appendChild(btnAnswer);
   });
 }
