@@ -304,6 +304,7 @@ function generaDomanda() {
       // Aggiungi una classe personalizzata in base al risultato
       if (answer === domandaSelezionata.correct_answer) {
         btnAnswer.classList.add('correct-answer');
+        aggiornaPunteggio();
       } else {
         btnAnswer.classList.add('incorrect-answer');
       }
