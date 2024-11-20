@@ -25,12 +25,55 @@ function ottieniPunteggio() {
   return data.score;
 }
 
+// Libreria Canvas confetti
 function launchConfetti() {
+  // Confetti su tutto il viewport
   confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 },
+    particleCount: 200,
+    spread: 120,
+    origin: { x: 0.5, y: 0.5 }, // Centro dello schermo
+    startVelocity: 30,
+    ticks: 60,
   });
+
+  // Esplosioni di confetti
+  const duration = 2 * 1000; // 2 secondi
+  const animationEnd = Date.now() + duration;
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+
+    confetti({
+      particleCount: 100,
+      startVelocity: 20,
+      spread: 360,
+      origin: {
+        x: Math.random(),
+        y: Math.random() * 0.5, // Metà superiore dello schermo
+      },
+    });
+  }, 250);
+}
+
+// Effetto sonoro fail test
+function playSadMusic() {
+  console.log(":'(");
+  const audio = new Audio("assets/audio/violino_triste_piango_forte.mp3");
+  audio.play();
+  audio.volume = 0.5;
+  audio.loop = false;
+}
+
+// Effetto sonoro success test
+function cheersGoodJob() {
+  console.log(":D");
+  const audio = new Audio("assets/audio/ma_quanto_sei_forte_complimenti.mp3");
+  audio.play();
+  audio.volume = 0.5;
+  audio.loop = false;
 }
 
 function ottieniDomande() {
@@ -45,9 +88,13 @@ function ottieniDomande() {
     <p>You obtained ${data.score}/${punteggioTotale} points.</p>    
   `;
 
-  // Trigger confetti if the score is greater than or equal to 7
+  // Confetti e festa se il data score e maggiore-uguale a 6 (passato il test)
   if (data.score >= 6) {
+    cheersGoodJob();
     launchConfetti();
+  } else if (data.score <= 5) {
+    // Musica triste al fallimento del test
+    playSadMusic();
   }
 
   risultatoContainer.style.marginTop = "100px";
