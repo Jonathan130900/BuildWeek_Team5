@@ -22,6 +22,14 @@ function ottieniPunteggio() {
   return data.score;
 }
 
+function launchConfetti() {
+  confetti({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
+}
+
 function ottieniDomande() {
   const data = JSON.parse(localStorage.getItem("quizResults")) || {
     score: 0,
@@ -33,6 +41,11 @@ function ottieniDomande() {
     <h2>Quiz completed!</h2>
     <p>You obtained ${data.score}/10 points.</p>    
   `;
+
+  // Trigger confetti if the score is greater than or equal to 7
+  if (data.score >= 6) {
+    launchConfetti();
+  }
 
   risultatoContainer.style.marginTop = "100px";
   const listaRisposte = document.createElement("ul");
