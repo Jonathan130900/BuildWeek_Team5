@@ -102,13 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
 const timerDisplay = document.getElementById('timer');
 const canvas = document.getElementById('timerCanvas');
 const grafica2d = canvas.getContext('2d');
-let durata = 30; // Tempo iniziale
+let durata = 30;
 const durataTotale = 30;
-let timerInterval; // Intervallo globale per gestire il timer
-const maxDomande = 10; // Numero massimo di domande
-let domandeMostrate = []; // Array per tenere traccia delle domande mostrate
-let contatoreDomande = 0; // Contatore per fermare il quiz
-const contatoreDisplay = document.getElementById('contatoreDomande'); // Elemento HTML per mostrare il contatore
+let timerInterval;
+const maxDomande = 10;
+let domandeMostrate = [];
+let contatoreDomande = 0;
+const contatoreDisplay = document.getElementById('contatoreDomande');
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
@@ -140,7 +140,7 @@ function iniziaCountdown() {
 
     if (countdownValue <= 0) {
       clearInterval(countdownInterval);
-      countdownWrapper.remove(); // Rimuove il countdown dallo schermo
+      countdownWrapper.remove();
 
       contatoreDisplay.style.display = 'block';
       avviaQuiz();

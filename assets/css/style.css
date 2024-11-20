@@ -73,7 +73,7 @@ main {
 .stars {
   display: inline-flex;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 5rem;
   color: rgb(32, 35, 77);
 }
 .stars .star:hover,
@@ -204,4 +204,13 @@ button:hover {
 
 #buttonContainer {
   text-align: center;
+}
+
+#numeroDomanda {
+  font-size: 200px;
+  font-weight: 600;
+}
+
+#feedback {
+  font-size: 2em;
 }

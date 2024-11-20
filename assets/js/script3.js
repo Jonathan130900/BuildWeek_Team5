@@ -31,25 +31,35 @@ function ottieniDomande() {
   const risultatoContainer = document.getElementById("answersList");
   risultatoContainer.innerHTML = `
     <h2>Quiz completed!</h2>
-    <p>You obtained ${data.score}/10 points.</p>
-    <p>Questions details:</p>
-    
+    <p>You obtained ${data.score}/10 points.</p>    
   `;
 
   risultatoContainer.style.marginTop = "100px";
   const listaRisposte = document.createElement("ul");
+  listaRisposte.innerHTML = `
+    <p>Questions details:</p>`;
+  listaRisposte.style.listStyle = "none";
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement("li");
     listItem.innerHTML = `
-      <strong>Question ${index + 1}:</strong> ${risposta.question}<br>
+      <p id = 'numeroDomanda'>Question ${index + 1}:</p> ${
+      risposta.question
+    }<br>
       <strong>Given answer:</strong> ${risposta.givenAnswer} <br>
       <strong>Right answer:</strong> ${risposta.correctAnswer} <br>
-      <strong>result:</strong> ${risposta.isCorrect ? "Correct" : "Wrong"}
+      <strong>result:</strong> <strong id="result-${index}">${
+      risposta.isCorrect ? "Correct" : "Wrong"
+    }</strong>
     `;
-    listItem.style.color = risposta.isCorrect ? "green" : "red";
+
+    // Colore del testo per la domanda e le risposte non modificato
     listItem.style.textAlign = "left";
     listItem.style.padding = "20px";
     listaRisposte.style.border = "2px solid purple";
+
+    // Imposta il colore solo per il risultato
+    const resultElement = listItem.querySelector(`#result-${index}`);
+    resultElement.style.color = risposta.isCorrect ? "green" : "red";
 
     listaRisposte.appendChild(listItem);
   });
