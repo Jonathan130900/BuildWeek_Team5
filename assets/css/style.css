@@ -21,13 +21,13 @@ img {
 header {
   display: flex;
   justify-content: space-between;
-  max-width: 1500px;
+  max-width: 70%;
   margin: 0 auto;
 }
 
 main {
   text-align: center;
-  max-width: 1200px;
+  max-width: 50%;
   margin: 0 auto;
 }
 
