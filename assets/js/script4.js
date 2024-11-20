@@ -1,5 +1,6 @@
-const btnbutton = document.getElementById('btnFeedback');
+const btnFeedback = document.getElementById('btnFeedback');
 const star = document.getElementById('star');
+const txtFeedback = document.getElementById('feedbackText');
 let selectedRating = 0;
 
 // Aggiungi il comportamento cliccabile alle stelle
@@ -9,19 +10,17 @@ stars.forEach((star) => {
     const hoverRating = parseInt(star.getAttribute('data-value'));
     updateStars(hoverRating);
   });
-  
-  star.addEventListener('mouseout', () => {
-  updateStars(selectedRating);
-}); 
 
-star.addEventListener('click', () => {
-  selectedRating = parseInt(star.getAttribute('data-value'));
-  updateStars(selectedRating);
+  star.addEventListener('mouseout', () => {
+    updateStars(selectedRating);
+  });
+
+  star.addEventListener('click', () => {
+    selectedRating = parseInt(star.getAttribute('data-value'));
+    updateStars(selectedRating);
+  });
 });
 
-})
-
-/* al posto di click abbiamo messo mouse over*/
 
 function updateStars(rating) {
   stars.forEach((star) => {
@@ -39,14 +38,19 @@ function submitRating() {
   if (selectedRating === 0) {
     alert('Per favore, seleziona una valutazione!');
     return;
+  } else {
+    alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
+    window.location.href = '/index.html';
   }
-
-  alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
-
   // Reset delle stelle
   selectedRating = 0;
+  txtFeedback.textContent = '';
   updateStars(selectedRating);
 
   // Resetta il campo feedback
   document.getElementById('feedback').value = '';
 }
+
+btnFeedback.addEventListener('click', () => {
+  submitRating();
+});

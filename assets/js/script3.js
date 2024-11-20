@@ -3,9 +3,11 @@ const btnRate = document.getElementById("btnRate");
 const correct = document.getElementById("percentageCorrect");
 const wrong = document.getElementById("percentageWrong");
 const answersList = document.getElementById("answerRecap");
+const chartText = document.getElementById("chartText");
 
 const punteggioFinale = ottieniPunteggio();
-const rightPercentage = (punteggioFinale / 10) * 100;
+const punteggioTotale = 10;
+const rightPercentage = (punteggioFinale / punteggioTotale) * 100;
 const wrongPercentage = 100 - rightPercentage;
 
 document.addEventListener("load", init());
@@ -15,6 +17,7 @@ function init() {
   correctAnswer();
   wrongAnswer();
   ottieniDomande();
+  resultText();
 }
 
 function ottieniPunteggio() {
@@ -39,7 +42,7 @@ function ottieniDomande() {
   const risultatoContainer = document.getElementById("answersList");
   risultatoContainer.innerHTML = `
     <h2>Quiz completed!</h2>
-    <p>You obtained ${data.score}/10 points.</p>    
+    <p>You obtained ${data.score}/${punteggioTotale} points.</p>    
   `;
 
   // Trigger confetti if the score is greater than or equal to 7
@@ -55,7 +58,7 @@ function ottieniDomande() {
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement("li");
 
-    // Aggiungere la domanda e le risposte senza colorare il testo
+    // Aggiungere la domanda e le risposte
     listItem.innerHTML = `
       <p id = 'numeroDomanda'>Question ${index + 1}:</p> ${
       risposta.question
@@ -67,7 +70,6 @@ function ottieniDomande() {
     }</strong>
     `;
 
-    // Colore del testo per la domanda e le risposte non modificato
     listItem.style.textAlign = "left";
     listItem.style.padding = "20px";
     listaRisposte.style.border = "2px solid purple";
@@ -83,7 +85,7 @@ function ottieniDomande() {
 }
 
 function flowchart(result, difference) {
-  const ctx = document.getElementById("myPieChart").getContext("2d");
+  const ctx = document.getElementById("myFlowChart").getContext("2d");
 
   const data = {
     labels: ["Wrong Answers", "Correct Answers"],
@@ -98,9 +100,10 @@ function flowchart(result, difference) {
   };
 
   const config = {
-    type: "pie",
+    type: "doughnut",
     data: data,
     options: {
+      cutout: "75%",
       responsive: false,
       plugins: {
         legend: {
@@ -112,6 +115,28 @@ function flowchart(result, difference) {
 
   // Crea il grafico
   new Chart(ctx, config);
+}
+
+function resultText() {
+  const newH4 = document.createElement("h4");
+  const newP = document.createElement("p");
+
+  // Controlla il punteggio e determina il messaggio da mostrare
+  if (punteggioFinale > punteggioTotale / 2) {
+    newH4.innerHTML = `Congratulations! <br> You passed the exam.`;
+    newP.innerHTML = `We'll send you the certificate in a few minutes.<br>
+                      Check your email (including promotions/spam folder).`;
+    chartText.appendChild(newH4);
+    chartText.appendChild(newP);
+  } else {
+    newH4.innerHTML = `We're sorry! <br> You didn't pass the exam.`;
+    chartText.appendChild(newH4);
+  }
+
+  // Stile aggiuntivo per il testo (opzionale)
+  newH4.style.textAlign = "center";
+  newH4.style.color = punteggioFinale > punteggioTotale / 2 ? "green" : "red";
+  newP.style.textAlign = "center";
 }
 
 btnRate.addEventListener("click", function () {
