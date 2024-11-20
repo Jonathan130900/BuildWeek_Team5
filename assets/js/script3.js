@@ -1,20 +1,30 @@
 const results = document.getElementById('results');
 const btnRate = document.getElementById('btnRate');
+const correct = document.getElementById('percentageCorrect');
+const wrong = document.getElementById('percentageWrong');
 
-const result = 6;
-const difference = 10 - result;
+const punteggioFinale = ottieniPunteggio();
+const rightPercentage = (punteggioFinale / 10) * 100;
+const wrongPercentage = 100 - rightPercentage;
 
 document.addEventListener('load', init());
 
 function init() {
-  flowchart(result, difference);
+  flowchart(rightPercentage, wrongPercentage);
+  correctAnswer();
+  wrongAnswer();
+}
+
+function ottieniPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter'));
+  return data.score;
 }
 
 function flowchart(result, difference) {
   const ctx = document.getElementById('myPieChart').getContext('2d');
 
   const data = {
-    labels: ['difference', 'result'],
+    labels: ['Wrong Answers', 'Correct Answers'],
     datasets: [
       {
         label: 'Risultati',
@@ -41,19 +51,28 @@ function flowchart(result, difference) {
   // Crea il grafico
   new Chart(ctx, config);
 }
+
 btnRate.addEventListener('click', function () {
   window.location.href = 'index-4.html';
   resetPunteggio();
 });
 
-// Funzione per ottenere il punteggio corrente
-function ottieniPunteggio() {
-  const data = JSON.parse(localStorage.getItem('trueCounter'));
-  return data.score;
+//Funzione per mostrare a schermo la percentuale giusta
+function correctAnswer() {
+  const newP = document.createElement('p');
+  newP.id = 'correctP';
+  const correctPercentage = `${rightPercentage}%`;
+  newP.innerText = correctPercentage;
+  correct.appendChild(newP);
 }
-const punteggioFinale = ottieniPunteggio();
+function wrongAnswer() {
+  const newP = document.createElement('p');
+  newP.id = 'wrongP';
+  const percentageWrong = `${wrongPercentage}%`;
+  newP.innerText = percentageWrong;
+  wrong.appendChild(newP);
+}
 
-// Funzione per resettare il punteggio
 function resetPunteggio() {
   localStorage.setItem('trueCounter', JSON.stringify({ score: 0 }));
 }
