@@ -106,7 +106,7 @@ textarea {
 #btnNextPage1,
 #btnNextPage2,
 #btnRate,
-#btnFeedback {
+#btnFeedback 
 #btnRate,
 #btnFeedback
  {
@@ -169,7 +169,6 @@ button:disabled.incorrect-answer {
 
 button:hover {
   background-color: #B10087;
-  border-color: ;
 }
 
 #contatoreDomande {
