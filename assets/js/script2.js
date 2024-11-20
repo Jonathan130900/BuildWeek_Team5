@@ -111,10 +111,8 @@ let contatoreDomande = 0; // Contatore per fermare il quiz
 const contatoreDisplay = document.getElementById('contatoreDomande'); // Elemento HTML per mostrare il contatore
 
 function iniziaCountdown() {
-  // Nascondi il contatore delle domande
   contatoreDisplay.style.display = 'none';
 
-  // Crea la frase "Quiz starts in"
   const countdownWrapper = document.createElement('div');
   countdownWrapper.id = 'countdownWrapper';
   countdownWrapper.style.textAlign = 'center';
@@ -144,19 +142,17 @@ function iniziaCountdown() {
       clearInterval(countdownInterval);
       countdownWrapper.remove(); // Rimuove il countdown dallo schermo
 
-      // Mostra il contatore delle domande
       contatoreDisplay.style.display = 'block';
-
-      avviaQuiz(); // Avvia il timer principale e genera la prima domanda
+      avviaQuiz();
     }
   }, 1000);
 }
 
 function avviaQuiz() {
-  drawCircle(1); // Disegna il cerchio pieno all'inizio
-  aggiornaTimer(); // Aggiorna il display del timer
-  timerInterval = setInterval(aggiornaTimer, 1000); // Avvia il timer
-  generaDomanda(); // Genera la prima domanda
+  drawCircle(1);
+  aggiornaTimer();
+  timerInterval = setInterval(aggiornaTimer, 1000);
+  generaDomanda();
 }
 
 function aggiornaContatore() {
@@ -165,52 +161,43 @@ function aggiornaContatore() {
 
 function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
+  const centerY = canvas.height / 4;
   const radius = 60;
   const startAngle = -Math.PI / 2;
   const endAngle = startAngle + 2 * Math.PI * percentage;
 
   grafica2d.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Cerchio di sfondo
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, 0, 2 * Math.PI);
   grafica2d.fillStyle = 'transparent';
   grafica2d.fill();
 
-  // Cerchio del timer
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, startAngle, endAngle);
   grafica2d.lineWidth = 10;
-  if (durata >10) {
+  if (durata > 10) {
     grafica2d.strokeStyle = '#00FF00';
- } else if (durata <= 10) {
-   grafica2d.strokeStyle = '#FF0000';
- } 
+  } else if (durata <= 10) {
+    grafica2d.strokeStyle = '#FF0000';
+  }
   grafica2d.stroke();
 
   timerDisplay.textContent = durata;
 
-  // Timer testuale al centro
   grafica2d.font = '30px Arial';
-  if (durata >10) {
-     grafica2d.fillStyle = '#FFFFFF';
+  if (durata > 10) {
+    grafica2d.fillStyle = '#FFFFFF';
   } else if (durata <= 10) {
     grafica2d.fillStyle = '#FF0000';
-  } 
- 
+  }
+
   grafica2d.textAlign = 'center';
   grafica2d.textBaseline = 'middle';
   grafica2d.fillText(timeLeft, centerX, centerY);
 }
 
 function aggiornaTimer() {
-  
-
- 
-
- 
-
   const percentage = durata / durataTotale;
   drawCircle(percentage, durata);
 
@@ -235,23 +222,24 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-function aggiornaContatore() {
-  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
-}
 
 function inizializzaPunteggio() {
-  const data = JSON.parse(localStorage.getItem('trueCounter')) || { score: 0 };
-  localStorage.setItem('trueCounter', JSON.stringify(data));
+  const data = JSON.parse(localStorage.getItem('quizResults')) || {
+    score: 0,
+    answers: [],
+  };
+  localStorage.setItem('quizResults', JSON.stringify(data));
 }
 
-// Funzione per aggiornare il punteggio
 function aggiornaPunteggio() {
-  const data = JSON.parse(localStorage.getItem('trueCounter')) || { score: 0 };
-  data.score += 1; // Incrementa il punteggio di 1
-  localStorage.setItem('trueCounter', JSON.stringify(data));
+  const data = JSON.parse(localStorage.getItem('quizResults')) || {
+    score: 0,
+    answers: [],
+  };
+  data.score += 1;
+  localStorage.setItem('quizResults', JSON.stringify(data));
 }
 
-// Modifica nella funzione `generaDomanda`
 function generaDomanda() {
   if (contatoreDomande >= maxDomande) {
     clearInterval(timerInterval);
@@ -269,7 +257,6 @@ function generaDomanda() {
     });
 
     divDomanda.appendChild(bottoneProssimaPagina);
-
     return;
   }
 
@@ -281,42 +268,46 @@ function generaDomanda() {
   domandeMostrate.push(indiceCasuale);
   contatoreDomande++;
 
-  aggiornaContatore(); // Aggiorna il contatore di domande
-
+  aggiornaContatore();
   const domandaSelezionata = questions[indiceCasuale];
   const divQuestion = document.getElementById('domande');
-  divQuestion.innerHTML = '';
+  divQuestion.innerHTML = `<h3>${domandaSelezionata.question}</h3>`;
 
-  const intestazione = document.createElement('h2');
-  intestazione.id = 'QuestionH2';
-  intestazione.textContent = domandaSelezionata.question;
-  intestazione.setAttribute('aria-live', 'polite');
-  divQuestion.appendChild(intestazione);
-
-  const risposte = [
+  let answers = [
     ...domandaSelezionata.incorrect_answers,
     domandaSelezionata.correct_answer,
   ];
-  shuffleArray(risposte);
+  shuffleArray(answers);
 
-  // Crea un array per mantenere i riferimenti ai pulsanti di risposta
   const buttons = [];
-
-  risposte.forEach((answer) => {
+  answers.forEach((answer) => {
     const btnAnswer = document.createElement('button');
     btnAnswer.textContent = answer;
     btnAnswer.id = 'btnAnswers';
     btnAnswer.addEventListener('click', () => {
-      // Disabilita tutti i pulsanti
       buttons.forEach((btn) => (btn.disabled = true));
 
-      // Aggiungi una classe personalizzata in base al risultato
-      if (answer === domandaSelezionata.correct_answer) {
+      const data = JSON.parse(localStorage.getItem('quizResults')) || {
+        score: 0,
+        answers: [],
+      };
+
+      const isCorrect = answer === domandaSelezionata.correct_answer;
+      if (isCorrect) {
         btnAnswer.classList.add('correct-answer');
-        aggiornaPunteggio();
+        data.score += 1;
       } else {
         btnAnswer.classList.add('incorrect-answer');
       }
+
+      data.answers.push({
+        question: domandaSelezionata.question,
+        givenAnswer: answer,
+        correctAnswer: domandaSelezionata.correct_answer,
+        isCorrect: isCorrect,
+      });
+
+      localStorage.setItem('quizResults', JSON.stringify(data));
 
       setTimeout(() => {
         resetTimer();
@@ -324,7 +315,7 @@ function generaDomanda() {
       }, 1000);
     });
 
-    buttons.push(btnAnswer); // Aggiungi il pulsante all'array
+    buttons.push(btnAnswer);
     divQuestion.appendChild(btnAnswer);
   });
 }
