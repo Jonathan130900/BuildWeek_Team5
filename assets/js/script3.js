@@ -1,44 +1,42 @@
-const results = document.getElementById('results');
-const btnRate = document.getElementById('btnRate');
+const results = document.getElementById("results");
+const btnRate = document.getElementById("btnRate");
+const correct = document.getElementById("percentageCorrect");
+const wrong = document.getElementById("percentageWrong");
 
-const result = 6;
-const difference = 4;
+const punteggioFinale = ottieniPunteggio();
+const rightPercentage = (punteggioFinale / 10) * 100;
+const wrongPercentage = 100 - rightPercentage;
 
-document.addEventListener('load', init());
+document.addEventListener("load", init());
 
 function init() {
-  flowchart(result, difference);
-  displayResultText(result);
+  flowchart(rightPercentage, wrongPercentage);
+  correctAnswer();
+  wrongAnswer();
 }
 
-function displayResultText(result) {
-  const resultText = document.getElementById("resultText");
-
-  if (result >= 6) {
-    resultText.textContent = "Complimenti, hai passato il test!";
-  } else if (difference >= 5) {
-    resultText.textContent =
-      "Peccato, non hai passato il test! Puoi riprovare quante volte vuoi.";
-  }
+function ottieniPunteggio() {
+  const data = JSON.parse(localStorage.getItem("trueCounter"));
+  return data.score;
 }
 
 function flowchart(result, difference) {
-  const ctx = document.getElementById('myPieChart').getContext('2d');
+  const ctx = document.getElementById("myPieChart").getContext("2d");
 
   const data = {
-    labels: ['difference', 'result'],
+    labels: ["Wrong Answers", "Correct Answers"],
     datasets: [
       {
-        label: 'Risultati',
+        label: "Risultati",
         data: [difference, result], // DA AGGIUNGERE RISULTATI QUIZ
-        backgroundColor: ['#C2128D', '#00FFFF'],
-        borderColor: ['#C2128D', '#00FFFF'],
+        backgroundColor: ["#C2128D", "#00FFFF"],
+        borderColor: ["#C2128D", "#00FFFF"],
       },
     ],
   };
 
   const config = {
-    type: 'pie',
+    type: "pie",
     data: data,
     options: {
       responsive: false,
@@ -53,19 +51,28 @@ function flowchart(result, difference) {
   // Crea il grafico
   new Chart(ctx, config);
 }
-btnRate.addEventListener('click', function () {
-  window.location.href = 'index-4.html';
+
+btnRate.addEventListener("click", function () {
+  window.location.href = "index-4.html";
   resetPunteggio();
 });
 
-// Funzione per ottenere il punteggio corrente
-function ottieniPunteggio() {
-  const data = JSON.parse(localStorage.getItem('trueCounter'));
-  return data.score;
+//Funzione per mostrare a schermo la percentuale giusta
+function correctAnswer() {
+  const newP = document.createElement("p");
+  newP.id = "correctP";
+  const correctPercentage = `${rightPercentage}%`;
+  newP.innerText = correctPercentage;
+  correct.appendChild(newP);
 }
-const punteggioFinale = ottieniPunteggio();
+function wrongAnswer() {
+  const newP = document.createElement("p");
+  newP.id = "wrongP";
+  const percentageWrong = `${wrongPercentage}%`;
+  newP.innerText = percentageWrong;
+  wrong.appendChild(newP);
+}
 
-// Funzione per resettare il punteggio
 function resetPunteggio() {
-  localStorage.setItem('trueCounter', JSON.stringify({ score: 0 }));
+  localStorage.setItem("trueCounter", JSON.stringify({ score: 0 }));
 }

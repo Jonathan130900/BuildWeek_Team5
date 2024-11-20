@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
   box-sizing: border-box;
   background-image: url(/assets/img/bg.jpg);
   background-repeat: no-repeat;
@@ -20,13 +21,13 @@ img {
 header {
   display: flex;
   justify-content: space-between;
-  max-width: 1500px;
+  max-width: 70%;
   margin: 0 auto;
 }
 
 main {
   text-align: center;
-  max-width: 1200px;
+  max-width: 50%;
   margin: 0 auto;
 }
 
@@ -67,11 +68,6 @@ main {
 
 #questions {
   display: inline-block;
-}
-
-#results div {
-  display: flex;
-  width: 100%;
 }
 
 .stars {
@@ -157,7 +153,6 @@ button:hover {
   color: brown;
 }
 #results div {
-  display: flex;
   width: 100%;
 }
 
