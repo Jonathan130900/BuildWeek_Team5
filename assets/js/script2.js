@@ -17,7 +17,6 @@ const questions = [
     difficulty: 'easy',
     question:
       "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
-      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: 'Final',
     incorrect_answers: ['Static', 'Private', 'Public'],
   },
@@ -96,8 +95,8 @@ const questions = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  iniziaCountdown();
   inizializzaPunteggio();
+  iniziaCountdown();
 });
 
 const timerDisplay = document.getElementById('timer');
@@ -199,9 +198,7 @@ function aggiornaTimer() {
 
   if (durata <= 5) {
     timerDisplay.style.color = 'red';
-    timerDisplay.style.color = 'red';
   } else {
-    timerDisplay.style.color = '#000';
     timerDisplay.style.color = '#000';
   }
 
@@ -259,7 +256,6 @@ function generaDomanda() {
     timerDisplay.style.display = 'none';
 
     const divDomanda = document.getElementById('domande');
-    divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
     divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
 
     const bottoneProssimaPagina = document.createElement('button');
@@ -321,9 +317,8 @@ function generaDomanda() {
 
       setTimeout(() => {
         resetTimer();
-      }
-      setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
-      risposte.forEach(btn => btn.disabled = true); // Disabilita i bottoni
+        generaDomanda();
+      }, 1000);
     });
 
     buttons.push(btnAnswer); // Aggiungi il pulsante all'array

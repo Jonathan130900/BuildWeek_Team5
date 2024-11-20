@@ -1,3 +1,4 @@
+
 html,
 body {
   margin: 0;
@@ -10,10 +11,13 @@ body {
   color: white;
   font-family: 'Ubuntu', sans-serif;
 }
+ #instruction{
+color: #C2128D;
+}
 
 img {
-  width: 20%;
-  height: 10%;
+  width: 150px;
+  height: 95%;
   margin-top: 2vw;
   padding-left: 2vw;
 }
@@ -21,27 +25,29 @@ img {
 header {
   display: flex;
   justify-content: space-between;
-  max-width: 1500px;
+  max-width: 70%;
   margin: 0 auto;
 }
 
 main {
   text-align: center;
-  max-width: 1200px;
+  max-width: 50%;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 #welcomePage {
-  font-size: 2rem;
-  margin-top: 10rem;
+  font-size: 1.7rem;
+  margin-top: 2rem;
 }
 
 #welcomePage ul {
-  list-style-type: none;
-  line-height: 50px;
+  font-size: 24px;
+  line-height: 45px;
   text-align: left;
-  padding: 0;
+
 }
+
 #welcomePage p {
   border-bottom: 2px solid #c2128d;
   padding-bottom: 20px;
@@ -50,8 +56,8 @@ main {
 #welcomePage section {
   display: flex;
   justify-content: space-between;
-  border: 5px solid #c2128d;
-  padding: 15px;
+  border: 3px solid #c2128d;
+  padding: 30px;
 }
 
 #checkbox {
@@ -62,6 +68,7 @@ main {
   margin-right: 10px;
 }
 
+/* inizio CSS pagina 4*/
 #startCountdownDiv {
   font-size: 100px;
 }
@@ -81,10 +88,12 @@ main {
   font-size: 2rem;
   color: rgb(32, 35, 77);
 }
+
 .stars .star:hover,
 .stars .star.active {
   color: rgb(68, 243, 255);
 }
+
 .feedback-section {
   margin-top: 20px;
 }
@@ -97,6 +106,7 @@ textarea {
   padding: 10px;
   font-size: 1rem;
 }
+
 #btnNextPage1,
 #btnNextPage2,
 #btnRate {
@@ -111,6 +121,12 @@ textarea {
   cursor: pointer;
 }
 
+#btnNextPage1 {
+  color: black;
+  background-color: #00FFFF;
+  box-shadow: 0px 0px 10px #00FFFF,
+  0px 0px 30px #00FFFF;
+}
 #btnAnswers {
   width: 10em;
   height: 2em;
@@ -133,8 +149,10 @@ textarea {
 button:disabled.correct-answer {
   background-color: green;
   color: white;
-  opacity: 1; /* Sovrascrivi la trasparenza predefinita */
-  cursor: not-allowed; /* Mostra che è disabilitato */
+  opacity: 1;
+  /* Sovrascrivi la trasparenza predefinita */
+  cursor: not-allowed;
+  /* Mostra che è disabilitato */
 }
 
 button:disabled.incorrect-answer {
@@ -196,14 +214,17 @@ button:hover {
   box-sizing: border-box;
   font-size: 54px;
 }
+
 #resultsPercentage p {
   font-size: 54px;
 }
+
 /* Centrato nei loro div corrette e sbagliate */
 #percentageCorrect,
 #percentageWrong {
   justify-content: center;
 }
+
 /* Questo mette il chart posizionato al centro */
 #chartContainer {
   display: flex;
