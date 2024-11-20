@@ -192,11 +192,7 @@ button:hover {
 }
 
 /* CSS Index-3 PIECHART */
-#results div {
-  width: 100%;
-}
 
-/* Chart e percentuale risultati vengono messi in colonna per eventualmente mettere il chart al centro e allineare la percentuale ai lati simile al mockup */
 #resultsContainer {
   display: flex;
   flex-direction: column;
@@ -246,17 +242,35 @@ button:hover {
   position: relative;
 }
 
-#chartInnerText {
+#chartText {
+  width: 30%;
+  height: 300px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
   text-align: center;
+}
+
+#chartText h4 {
+  font-size: 1.3em;
+}
+
+#chartText p {
+  font-size: 1em;
 }
 
 #buttonContainer {
   text-align: center;
+}
+
+#buttonContainer p {
+  margin-top: 30px;
 }
 
 #numeroDomanda {
