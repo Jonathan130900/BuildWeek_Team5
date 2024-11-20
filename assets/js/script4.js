@@ -49,4 +49,6 @@ function submitRating() {
 
   // Resetta il campo feedback
   document.getElementById('feedback').value = '';
+  window.location.href = '/index.html';
 }
+submitRating()
