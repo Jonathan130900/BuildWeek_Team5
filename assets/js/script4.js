@@ -3,10 +3,11 @@ const star= document.getElementById('star')
 let selectedRating = 0;
 
 
+
 // Aggiungi il comportamento cliccabile alle stelle
 const stars = document.querySelectorAll('.star');
 stars.forEach((star) => {
-  star.addEventListener(  'mouseover',() => {
+  star.addEventListener( 'mouseleave',() => {
     selectedRating = parseInt(star.getAttribute('data-value'));
     updateStars(selectedRating);
   });
@@ -41,9 +42,9 @@ function submitRating() {
   // Reset della valutazione (opzionale)
   selectedRating = 0;
   updateStars(selectedRating);
-  document.getElementById('btnfeedback').value = '';
-
+  document.getElementById('btnfeedback').value = '0';
 }
+
 
 
 
