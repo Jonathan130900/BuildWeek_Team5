@@ -42,7 +42,7 @@ function ottieniDomande() {
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement('li');
 
-    // Aggiungere la domanda e le risposte senza colorare il testo
+    // Aggiungere la domanda e le risposte
     listItem.innerHTML = `
       <p id = 'numeroDomanda'>Question ${index + 1}:</p> ${
       risposta.question
@@ -54,7 +54,6 @@ function ottieniDomande() {
     }</strong>
     `;
 
-    // Colore del testo per la domanda e le risposte non modificato
     listItem.style.textAlign = 'left';
     listItem.style.padding = '20px';
     listaRisposte.style.border = '2px solid purple';
@@ -85,9 +84,10 @@ function flowchart(result, difference) {
   };
 
   const config = {
-    type: 'pie',
+    type: 'doughnut',
     data: data,
     options: {
+      cutout: '70%',
       responsive: false,
       plugins: {
         legend: {

@@ -109,6 +109,7 @@ const maxDomande = 10;
 let domandeMostrate = [];
 let contatoreDomande = 0;
 const contatoreDisplay = document.getElementById('contatoreDomande');
+const questionsContainer = document.getElementById('domandeContainer');
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
@@ -130,7 +131,7 @@ function iniziaCountdown() {
 
   countdownWrapper.appendChild(countdownText);
   countdownWrapper.appendChild(countdownDisplay);
-  document.body.appendChild(countdownWrapper);
+  questionsContainer.appendChild(countdownWrapper);
 
   let countdownValue = 3;
 
@@ -245,6 +246,7 @@ function generaDomanda() {
     clearInterval(timerInterval);
     canvas.style.display = 'none';
     timerDisplay.style.display = 'none';
+    contatoreDisplay.style.display = 'none';
 
     const divDomanda = document.getElementById('domande');
     divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
