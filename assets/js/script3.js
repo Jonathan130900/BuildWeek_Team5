@@ -41,6 +41,8 @@ function ottieniDomande() {
   listaRisposte.style.listStyle = "none";
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement("li");
+
+    // Aggiungere la domanda e le risposte senza colorare il testo
     listItem.innerHTML = `
       <p id = 'numeroDomanda'>Question ${index + 1}:</p> ${
       risposta.question
@@ -122,6 +124,13 @@ function wrongAnswer() {
   wrong.appendChild(newP);
 }
 
-function resetPunteggio() {
-  localStorage.setItem("trueCounter", JSON.stringify({ score: 0 }));
+//Funzione per resettare il localstorage
+function resetLocalStorage() {
+  localStorage.setItem(
+    "quizResults",
+    JSON.stringify({
+      score: 0,
+      answers: [],
+    })
+  );
 }
