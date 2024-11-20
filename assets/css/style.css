@@ -80,7 +80,7 @@ button:hover {
   color: brown;
 }
 
-/* CSS Index-3 PIECHART */
+/* --------- CSS Index-3 & PIECHART ----------- */
 #results div {
   display: flex;
   width: 100%;
@@ -121,7 +121,7 @@ button:hover {
 #resultsPercentage p {
   font-size: 54px;
 }
-/* Centrato nei loro div corrette e sbagliate */
+/* Centrato nei loro div "corrette" e "sbagliate" */
 #percentageCorrect,
 #percentageWrong {
   justify-content: center;
