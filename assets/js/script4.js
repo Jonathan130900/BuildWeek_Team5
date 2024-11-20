@@ -33,16 +33,18 @@ function updateStars(rating) {
 }
 
 function submitRating() {
-  const feedback = document.getElementById('feedback').value;
+  const feedback = document.getElementById('feedback').value; }
 
   if (selectedRating === 0) {
     alert('Per favore, seleziona una valutazione!');
     return;
   }
 
-  alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
-
-  // Reset delle stelle
+  resultDiv.innerHTML = `
+                <p>Grazie per la tua valutazione di ${selectedRating} stelle!</p>
+                <p>Commento: ${feedback || 'Nessun commento lasciato.'}</p>
+            `;
+  // Reset della valutazione (opzionale)
   selectedRating = 0;
   updateStars(selectedRating);
 

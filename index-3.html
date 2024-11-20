@@ -24,24 +24,27 @@
       <h1>Results</h1>
       <p>The summary of your answers:</p>
       <section id="results">
+        <div id="chartContainer">
+          <canvas id="myPieChart">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          </canvas>
+        </div>
         <div id="resultsContainer">
-          <div id="chartContainer">
-            <canvas id="myPieChart">
-              <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            </canvas>
-          </div>
           <div id="resultsPercentage">
             <div id="percentageCorrect">
-              <p>Correct</p>
+              <p id="correct">Correct</p>
             </div>
             <div id="percentageWrong">
-              <p>Wrong</p>
+              <p id="wrong">Wrong</p>
             </div>
           </div>
         </div>
       </section>
       <div id="buttonContainer">
         <button type="button" id="btnRate">RATE US!</button>
+      </div>
+      <div id="answersRecap">
+        <p id="answersList"></p>
       </div>
     </main>
 
