@@ -1,5 +1,5 @@
 const btnbutton = document.getElementById('btnFeedback');
-const star= document.getElementById('star')
+const star = document.getElementById('star');
 let selectedRating = 0;
 
 // Aggiungi il comportamento cliccabile alle stelle
@@ -35,14 +35,12 @@ function updateStars(rating) {
 
 function submitRating() {
   const feedback = document.getElementById('feedback').value;
-  const resultDiv = document.getElementById('result');
 
   if (selectedRating === 0) {
-    resultDiv.innerHTML =
-      "<p style='color: red;'>Per favore, seleziona una valutazione!</p>";
+    alert('Per favore, seleziona una valutazione!');
     return;
   }
-window.alert('Grazie per il feedback');
+
   resultDiv.innerHTML = `
                 <p>Grazie per la tua valutazione di ${selectedRating} stelle!</p>
                 <p>Commento: ${feedback || 'Nessun commento lasciato.'}</p>
@@ -50,6 +48,7 @@ window.alert('Grazie per il feedback');
   // Reset della valutazione (opzionale)
   selectedRating = 0;
   updateStars(selectedRating);
+
+  // Resetta il campo feedback
   document.getElementById('feedback').value = '';
 }
-
