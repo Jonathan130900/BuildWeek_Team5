@@ -77,11 +77,6 @@ main {
   display: inline-block;
 }
 
-#results div {
-  display: flex;
-  width: 100%;
-}
-
 .stars {
   display: inline-flex;
   cursor: pointer;
@@ -178,7 +173,6 @@ button:hover {
 
 /* CSS Index-3 PIECHART */
 #results div {
-  display: flex;
   width: 100%;
 }
 

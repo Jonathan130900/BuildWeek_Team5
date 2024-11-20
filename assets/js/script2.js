@@ -175,38 +175,41 @@ function drawCircle(percentage, timeLeft) {
   // Cerchio di sfondo
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-  grafica2d.fillStyle = '#555';
+  grafica2d.fillStyle = 'transparent';
   grafica2d.fill();
 
   // Cerchio del timer
   grafica2d.beginPath();
   grafica2d.arc(centerX, centerY, radius, startAngle, endAngle);
   grafica2d.lineWidth = 10;
-  grafica2d.strokeStyle = '#00FF00';
+  if (durata >10) {
+    grafica2d.strokeStyle = '#00FF00';
+ } else if (durata <= 10) {
+   grafica2d.strokeStyle = '#FF0000';
+ } 
   grafica2d.stroke();
+
+  timerDisplay.textContent = durata;
 
   // Timer testuale al centro
   grafica2d.font = '30px Arial';
-  grafica2d.fillStyle = '#FFFFFF';
+  if (durata >10) {
+     grafica2d.fillStyle = '#FFFFFF';
+  } else if (durata <= 10) {
+    grafica2d.fillStyle = '#FF0000';
+  } 
+ 
   grafica2d.textAlign = 'center';
   grafica2d.textBaseline = 'middle';
   grafica2d.fillText(timeLeft, centerX, centerY);
 }
 
 function aggiornaTimer() {
-  timerDisplay.textContent = durata;
+  
 
-  if (durata <= 5) {
-    timerDisplay.style.color = 'red';
-  } else {
-    timerDisplay.style.color = '#000';
-  }
+ 
 
-  if (durata <= 10) {
-    timerDisplay.classList.add('fineTimer');
-  } else {
-    timerDisplay.classList.remove('fineTimer');
-  }
+ 
 
   const percentage = durata / durataTotale;
   drawCircle(percentage, durata);
