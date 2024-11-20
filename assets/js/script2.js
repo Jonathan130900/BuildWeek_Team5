@@ -231,7 +231,18 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+function aggiornaContatore() {
+  contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
+}
 
+// Funzione per aggiornare il punteggio
+function aggiornaPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter')) || [];
+  data.score += 1; // Incrementa il punteggio di 1
+  localStorage.setItem('trueCounter', JSON.stringify(data));
+}
+
+// Modifica nella funzione `generaDomanda`
 function generaDomanda() {
   if (contatoreDomande >= maxDomande) {
     clearInterval(timerInterval);
@@ -279,24 +290,29 @@ function generaDomanda() {
   ];
   shuffleArray(risposte);
 
-  risposte.forEach(risposta => {
-    const btnRisposta = document.createElement('button');
-    btnRisposta.textContent = risposta;
-    btnRisposta.classList.add('btn-risposta');
-    btnRisposta.addEventListener('click', () => {
-      if (risposta === domandaSelezionata.correct_answer) {
-        btnRisposta.style.backgroundColor = 'green';
-        aggiornaRisposteCorrette();
-        resetTimer();
+  // Crea un array per mantenere i riferimenti ai pulsanti di risposta
+  const buttons = [];
+
+  risposte.forEach((answer) => {
+    const btnAnswer = document.createElement('button');
+    btnAnswer.textContent = answer;
+    btnAnswer.id = 'btnAnswers';
+    btnAnswer.addEventListener('click', () => {
+      // Disabilita tutti i pulsanti
+      buttons.forEach((btn) => (btn.disabled = true));
+
+      // Aggiungi una classe personalizzata in base al risultato
+      if (answer === domandaSelezionata.correct_answer) {
+        btnAnswer.classList.add('correct-answer');
+        aggiornaPunteggio();
       } else {
         btnAnswer.classList.add('incorrect-answer');
       }
 
       setTimeout(() => {
         resetTimer();
-      }
-      setTimeout(generaDomanda, 1000); // Passa alla prossima domanda
-      risposte.forEach(btn => btn.disabled = true); // Disabilita i bottoni
+        generaDomanda();
+      }, 1000);
     });
 
     buttons.push(btnAnswer); // Aggiungi il pulsante all'array
