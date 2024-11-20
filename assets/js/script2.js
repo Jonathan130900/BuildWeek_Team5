@@ -96,6 +96,7 @@ const questions = [
 
 document.addEventListener('DOMContentLoaded', () => {
   iniziaCountdown();
+  inizializzaPunteggio();
 });
 
 const timerDisplay = document.getElementById('timer');
@@ -235,9 +236,14 @@ function aggiornaContatore() {
   contatoreDisplay.textContent = `QUESTION ${contatoreDomande}/${maxDomande}`;
 }
 
+function inizializzaPunteggio() {
+  const data = JSON.parse(localStorage.getItem('trueCounter')) || { score: 0 };
+  localStorage.setItem('trueCounter', JSON.stringify(data));
+}
+
 // Funzione per aggiornare il punteggio
 function aggiornaPunteggio() {
-  const data = JSON.parse(localStorage.getItem('trueCounter')) || [];
+  const data = JSON.parse(localStorage.getItem('trueCounter')) || { score: 0 };
   data.score += 1; // Incrementa il punteggio di 1
   localStorage.setItem('trueCounter', JSON.stringify(data));
 }
