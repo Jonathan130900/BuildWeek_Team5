@@ -21,7 +21,6 @@ stars.forEach((star) => {
   });
 });
 
-/* al posto di click abbiamo messo mouse over*/
 
 function updateStars(rating) {
   stars.forEach((star) => {
