@@ -165,7 +165,7 @@ function aggiornaContatore() {
 
 function drawCircle(percentage, timeLeft) {
   const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
+  const centerY = canvas.height / 4;
   const radius = 60;
   const startAngle = -Math.PI / 2;
   const endAngle = startAngle + 2 * Math.PI * percentage;

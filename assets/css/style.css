@@ -37,13 +37,13 @@ main {
 }
 
 #welcomePage {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   margin-top: 2rem;
 }
 
 #welcomePage ul {
-  font-size: 24px;
-  line-height: 45px;
+  font-size: 20px;
+  line-height: 40px;
   text-align: left;
 
 }
@@ -61,13 +61,16 @@ main {
 }
 
 #checkbox {
+  margin-top: 5%;
   cursor: pointer;
   transform: scale(2.5);
   text-align: center;
   justify-content: center;
   margin-right: 10px;
 }
-
+label{
+  font-size: 15px;
+}
 /* inizio CSS pagina 4*/
 #startCountdownDiv {
   font-size: 100px;
@@ -122,6 +125,12 @@ textarea {
   box-shadow: 0px 0px 10px #00FFFF,
   0px 0px 30px #00FFFF;
 }
+/*inizio pagina due*/
+#timerCanvas{
+  margin-top: 15%;
+  width: 200px;
+ height: 200px;
+}
 #btnAnswers {
   width: 10em;
   height: 2em;
@@ -164,7 +173,8 @@ button:hover {
 #contatoreDomande {
   font-size: 2rem;
   font-weight: 600;
-  margin-top: 200px;
+  margin-top: 100px;
+margin-bottom: 5px;
 }
 
 .fineTimer {
