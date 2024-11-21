@@ -14,8 +14,8 @@ document.addEventListener('load', init());
 
 function init() {
   flowchart(rightPercentage, wrongPercentage);
-  correctAnswer();
-  wrongAnswer();
+  correctPercentage();
+  uncorrectPercentage();
   ottieniDomande();
   resultText();
 }
@@ -99,11 +99,13 @@ function ottieniDomande() {
 
   risultatoContainer.style.marginTop = '100px';
   const listaRisposte = document.createElement('ul');
+  listaRisposte.id = 'listaRisposte';
   listaRisposte.innerHTML = `
-    <p>Questions details:</p>`;
-  listaRisposte.style.listStyle = 'none';
+  <p>Questions details:</p>`;
+
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement('li');
+    listItem.id = 'answerLi';
 
     // Aggiungere la domanda e le risposte
     listItem.innerHTML = `
@@ -111,6 +113,9 @@ function ottieniDomande() {
       risposta.question
     } </p>
     <br>
+      <strong>Answers:</strong>${risposta.correctAnswer}, ${
+      risposta.incorrectAnswers
+    } <br>
       <strong>Given answer:</strong> ${risposta.givenAnswer} <br>
       <strong>Right answer:</strong> ${risposta.correctAnswer} <br>
       <strong>result:</strong> <strong id="result-${index}">${
@@ -193,7 +198,7 @@ btnRate.addEventListener('click', function () {
 });
 
 //Funzione per mostrare a schermo la percentuale giusta
-function correctAnswer() {
+function correctPercentage() {
   const newP = document.createElement('p');
   newP.id = 'correctP';
   const correctPercentage = `${rightPercentage}%`;
@@ -202,7 +207,7 @@ function correctAnswer() {
 }
 
 //Funzione per mostrare a schermo la percentuale sbagliata
-function wrongAnswer() {
+function uncorrectPercentage() {
   const newP = document.createElement('p');
   newP.id = 'wrongP';
   const percentageWrong = `${wrongPercentage}%`;

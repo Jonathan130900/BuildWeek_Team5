@@ -1,6 +1,6 @@
 const btnFeedback = document.getElementById('btnFeedback');
 const star = document.getElementById('star');
-const txtFeedback = document.getElementById('feedbackText');
+const txtFeedback = document.getElementById('feedbackText').value;
 let selectedRating = 0;
 
 // Aggiungi il comportamento cliccabile alle stelle
@@ -21,7 +21,6 @@ stars.forEach((star) => {
   });
 });
 
-
 function updateStars(rating) {
   stars.forEach((star) => {
     if (parseInt(star.getAttribute('data-value')) <= rating) {
@@ -38,17 +37,12 @@ function submitRating() {
   if (selectedRating === 0) {
     alert('Per favore, seleziona una valutazione!');
     return;
-  } else {
-    alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
-    window.location.href = '/index.html';
   }
+  alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
+
   // Reset delle stelle
   selectedRating = 0;
-  txtFeedback.textContent = '';
   updateStars(selectedRating);
-
-  // Resetta il campo feedback
-  document.getElementById('feedback').value = '';
   window.location.href = '/index.html';
 }
 
