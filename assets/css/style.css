@@ -67,11 +67,20 @@ main {
   text-align: center;
   justify-content: center;
   margin-right: 10px;
+  accent-color: #c2128d;
 }
+
 label {
   font-size: 15px;
 }
-/* inizio CSS pagina 4*/
+
+#difficulty {
+  margin: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 #startCountdownDiv {
   font-size: 100px;
 }
@@ -83,8 +92,8 @@ label {
 .stars {
   display: inline-flex;
   cursor: pointer;
-  font-size: 4rem;
-  color: rgb(32, 35, 77);
+  font-size: 4.5rem;
+  color: rgb(36, 41, 123);
 }
 
 .stars .star:hover,
@@ -108,8 +117,11 @@ textarea {
 #btnNextPage1,
 #btnNextPage2,
 #btnRate,
-#btnFeedback #btnRate,
-#btnFeedback {
+#btnFeedback,
+#easyButton,
+#mediumButton,
+#hardButton,
+#selected {
   width: 15rem;
   height: 3rem;
   font-size: 1.5rem;
@@ -120,6 +132,26 @@ textarea {
   border: none;
   border-radius: 20px;
   cursor: pointer;
+}
+
+/* Pulsanti di difficoltà */
+#easyButton,
+#mediumButton,
+#hardButton {
+  background-color: #c2128d;
+  color: white;
+  width: 10rem;
+  height: 2rem;
+  box-shadow: none;
+}
+
+/* Stato "selezionato" */
+#selected {
+  background-color: #630e49;
+  color: white;
+  width: 10rem;
+  height: 2rem;
+  box-shadow: none;
 }
 
 /*inizio pagina due*/

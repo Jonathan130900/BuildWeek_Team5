@@ -94,7 +94,103 @@ const questions = [
   },
 ];
 
-const questionHard = [
+const questionsMedium = [
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'What was the first computer bug?',
+    correct_answer: 'A moth',
+    incorrect_answers: [
+      'A glitch in hardware',
+      'A programming error',
+      'A disconnected cable',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'Which company developed the video game Half-Life?',
+    correct_answer: 'Valve',
+    incorrect_answers: ['Bethesda', 'id Software', 'Rockstar Games'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'boolean',
+    difficulty: 'medium',
+    question: 'The first computer virus was created in the 1980s.',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question:
+      'Which programming language is known for its "write once, run anywhere" capability?',
+    correct_answer: 'Java',
+    incorrect_answers: ['C++', 'Python', 'Ruby'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'Who is considered the father of the computer?',
+    correct_answer: 'Charles Babbage',
+    incorrect_answers: ['Alan Turing', 'John von Neumann', 'George Boole'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'What is the full form of RAID in computing?',
+    correct_answer: 'Redundant Array of Independent Disks',
+    incorrect_answers: [
+      'Random Access Integrated Data',
+      'Rapid Array of Inexpensive Drives',
+      'Reliable Access to Independent Data',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'What does the acronym DNS stand for?',
+    correct_answer: 'Domain Name System',
+    incorrect_answers: [
+      'Digital Network Service',
+      'Distributed Name Server',
+      'Dynamic Name System',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'In what year was the C programming language created?',
+    correct_answer: '1972',
+    incorrect_answers: ['1969', '1975', '1980'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'boolean',
+    difficulty: 'medium',
+    question: 'The Python programming language was named after Monty Python.',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'medium',
+    question: 'Which database is known for using the SQL language?',
+    correct_answer: 'MySQL',
+    incorrect_answers: ['MongoDB', 'Cassandra', 'Redis'],
+  },
+];
+
+const questionsHard = [
   {
     category: 'Science: Computers',
     type: 'multiple',
@@ -344,6 +440,11 @@ function aggiornaPunteggio() {
   localStorage.setItem('quizResults', JSON.stringify(data));
 }
 
+function ottieniDifficolta() {
+  const diff = JSON.parse(localStorage.getItem('difficulty'));
+  return diff.selected;
+}
+
 function generaDomanda() {
   if (contatoreDomande >= maxDomande) {
     clearInterval(timerInterval);
@@ -366,15 +467,34 @@ function generaDomanda() {
   }
 
   let indiceCasuale;
-  do {
-    indiceCasuale = Math.floor(Math.random() * questions.length);
-  } while (domandeMostrate.includes(indiceCasuale));
+
+  if (ottieniDifficolta() === 0) {
+    do {
+      indiceCasuale = Math.floor(Math.random() * questions.length);
+    } while (domandeMostrate.includes(indiceCasuale));
+  } else if (ottieniDifficolta() === 1) {
+    do {
+      indiceCasuale = Math.floor(Math.random() * questionsMedium.length);
+    } while (domandeMostrate.includes(indiceCasuale));
+  } else {
+    do {
+      indiceCasuale = Math.floor(Math.random() * questionsHard.length);
+    } while (domandeMostrate.includes(indiceCasuale));
+  }
 
   domandeMostrate.push(indiceCasuale);
   contatoreDomande++;
 
   aggiornaContatore();
-  const domandaSelezionata = questions[indiceCasuale];
+  let domandaSelezionata;
+
+  if (ottieniDifficolta() === 0) {
+    domandaSelezionata = questions[indiceCasuale];
+  } else if (ottieniDifficolta() === 1) {
+    domandaSelezionata = questionsMedium[indiceCasuale];
+  } else {
+    domandaSelezionata = questionsHard[indiceCasuale];
+  }
   const divQuestion = document.getElementById('domande');
   divQuestion.innerHTML = `<h3>${domandaSelezionata.question}</h3>`;
 
