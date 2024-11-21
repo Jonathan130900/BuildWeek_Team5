@@ -5,6 +5,7 @@ const difficultyDiv = document.getElementById('difficulty');
 document.addEventListener('DOMContentLoaded', () => {
   difficulty();
   selectDifficulty();
+  previousSelected();
 });
 btnNext.addEventListener('click', proceed);
 
@@ -12,36 +13,43 @@ checkbox.addEventListener('change', () => {
   btnNext.disabled = !checkbox.checked;
 });
 
+const easy = document.createElement('button');
+const medium = document.createElement('button');
+const hard = document.createElement('button');
+
 function selectDifficulty() {
   const newH4 = document.createElement('h4');
   newH4.innerText = 'Select Test difficulty:';
 
-  const easy = document.createElement('button');
   easy.id = 'easyButton';
   easy.innerText = 'Easy';
 
-  const medium = document.createElement('button');
   medium.id = 'mediumButton';
   medium.innerText = 'Medium';
 
-  const hard = document.createElement('button');
   hard.id = 'hardButton';
   hard.innerText = 'Hard';
 
   easy.addEventListener('click', () => {
-    setDifficultyEasy();
+    if (diff.selected != 1) {
+      setDifficultyEasy();
+    }
     easy.id = 'selected';
     medium.id = 'mediumButton';
     hard.id = 'hardButton';
   });
   medium.addEventListener('click', () => {
-    setDifficultyMedium();
+    if (diff.selected != 2) {
+      setDifficultyMedium();
+    }
     easy.id = 'easyButton';
     medium.id = 'selected';
     hard.id = 'hardButton';
   });
   hard.addEventListener('click', () => {
-    setDifficultyHard();
+    if (diff.selected != 3) {
+      setDifficultyHard();
+    }
     hard.id = 'selected';
     easy.id = 'easyButton';
     medium.id = 'mediumButton';
@@ -60,33 +68,34 @@ function difficulty() {
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
 
-function setDifficultyEasy() {
+const diff = JSON.parse(localStorage.getItem('difficulty')) || {
+  selected: 0,
+};
+
+function previousSelected() {
   const diff = JSON.parse(localStorage.getItem('difficulty')) || {
     selected: 0,
   };
-  if (diff.selected != 1) {
-    diff.selected = 1;
+  if (diff.selected === 1) {
+    easy.id = 'selected';
+  } else if (diff.selected === 2) {
+    medium.id = 'selected';
+  } else if (diff.selected === 3) {
+    hard.id = 'selected';
   }
+}
+
+function setDifficultyEasy() {
+  diff.selected = 1;
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
 
 function setDifficultyMedium() {
-  const diff = JSON.parse(localStorage.getItem('difficulty')) || {
-    selected: 0,
-  };
-  if (diff.selected === 1 || diff.selected === 3) {
-    diff.selected = 2;
-  }
+  diff.selected = 2;
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
-
 function setDifficultyHard() {
-  const diff = JSON.parse(localStorage.getItem('difficulty')) || {
-    selected: 0,
-  };
-  if (diff.selected === 1 || diff.selected === 2) {
-    diff.selected = 3;
-  }
+  diff.selected = 3;
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
 
