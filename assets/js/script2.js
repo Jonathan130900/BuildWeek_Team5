@@ -92,6 +92,106 @@ const questions = [
     correct_answer: 'Java',
     incorrect_answers: ['Python', 'C', 'Jakarta'],
   },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'Which of the following programming languages is considered a dialect of Lisp?',
+    correct_answer: 'Scheme',
+    incorrect_answers: ['Java', 'Python', 'C++'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'Which company developed the first microprocessor, the Intel 4004?',
+    correct_answer: 'Intel',
+    incorrect_answers: ['AMD', 'IBM', 'Microsoft'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'Which of these is the most used version control system in the open-source community?',
+    correct_answer: 'Git',
+    incorrect_answers: ['SVN', 'Mercurial', 'CVS'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question: 'Which of these programming languages is *not* compiled?',
+    correct_answer: 'Python',
+    incorrect_answers: ['C', 'Java', 'Go'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'boolean',
+    difficulty: 'hard',
+    question:
+      'In computer science, "Big O notation" is used to measure time complexity only.',
+    correct_answer: 'False',
+    incorrect_answers: ['True'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question: 'What does the command "chmod 777" do in Unix-based systems?',
+    correct_answer: 'Gives full permissions to all users',
+    incorrect_answers: [
+      'Gives read-only permission to the owner',
+      'Removes execute permissions',
+      'Changes the owner of a file',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'Which of the following is a technique used to test the behavior of a program under stress or high loads?',
+    correct_answer: 'Load Testing',
+    incorrect_answers: [
+      'Unit Testing',
+      'Integration Testing',
+      'Regression Testing',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'What is the main difference between an interpreter and a compiler?',
+    correct_answer:
+      'An interpreter translates code line-by-line, whereas a compiler translates the entire program at once.',
+    incorrect_answers: [
+      'Interpreters are faster than compilers',
+      'Compilers are slower than interpreters',
+      'There is no difference',
+    ],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'boolean',
+    difficulty: 'hard',
+    question: 'The first version of UNIX was written in Assembly language.',
+    correct_answer: 'True',
+    incorrect_answers: ['False'],
+  },
+  {
+    category: 'Science: Computers',
+    type: 'multiple',
+    difficulty: 'hard',
+    question:
+      'Which company developed the first graphical web browser, Mosaic?',
+    correct_answer: 'NCSA',
+    incorrect_answers: ['Microsoft', 'Apple', 'Netscape'],
+  },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -109,6 +209,7 @@ const maxDomande = 10;
 let domandeMostrate = [];
 let contatoreDomande = 0;
 const contatoreDisplay = document.getElementById('contatoreDomande');
+const questionsContainer = document.getElementById('domandeContainer');
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
@@ -130,7 +231,7 @@ function iniziaCountdown() {
 
   countdownWrapper.appendChild(countdownText);
   countdownWrapper.appendChild(countdownDisplay);
-  document.body.appendChild(countdownWrapper);
+  questionsContainer.appendChild(countdownWrapper);
 
   let countdownValue = 3;
 
@@ -245,6 +346,7 @@ function generaDomanda() {
     clearInterval(timerInterval);
     canvas.style.display = 'none';
     timerDisplay.style.display = 'none';
+    contatoreDisplay.style.display = 'none';
 
     const divDomanda = document.getElementById('domande');
     divDomanda.innerHTML = `<h2>Quiz terminato!</h2>`;
