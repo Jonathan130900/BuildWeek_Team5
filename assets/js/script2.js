@@ -315,8 +315,13 @@ function disableBack() {
   window.history.forward();
 }
 setTimeout('disableBack()', 0);
-window.onunload = function () {
-  null;
+window.onbeforeunload = function () {
+  const data = {
+    score: 0,
+    answers: [],
+  };
+  localStorage.setItem('quizResults', JSON.stringify(data));
+  return `Want to leave the page? <br> You will lost all your progress! `
 };
 
 function iniziaCountdown() {
