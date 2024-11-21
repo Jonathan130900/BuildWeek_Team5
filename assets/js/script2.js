@@ -294,7 +294,7 @@ const questionsHard = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  disableBack();
+  // disableBack();
   inizializzaPunteggio();
   iniziaCountdown();
 });
@@ -311,18 +311,18 @@ let contatoreDomande = 0;
 const contatoreDisplay = document.getElementById('contatoreDomande');
 const questionsContainer = document.getElementById('domandeContainer');
 
-function disableBack() {
-  window.history.forward();
-}
-setTimeout('disableBack()', 0);
-window.onbeforeunload = function () {
-  const data = {
-    score: 0,
-    answers: [],
-  };
-  localStorage.setItem('quizResults', JSON.stringify(data));
-  return `Want to leave the page? <br> You will lost all your progress! `
-};
+// function disableBack() {
+//   window.history.forward();
+// }
+// setTimeout('disableBack()', 0);
+// window.onbeforeunload = function () {
+//   const data = {
+//     score: 0,
+//     answers: [],
+//   };
+//   localStorage.setItem('quizResults', JSON.stringify(data));
+//   return `Want to leave the page? <br> You will lost all your progress! `
+// };
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
