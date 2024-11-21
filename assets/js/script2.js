@@ -488,11 +488,11 @@ function generaDomanda() {
   aggiornaContatore();
   let domandaSelezionata;
 
-  if (ottieniDifficolta() === 0) {
+  if (ottieniDifficolta() === 1) {
     domandaSelezionata = questions[indiceCasuale];
-  } else if (ottieniDifficolta() === 1) {
+  } else if (ottieniDifficolta() === 2) {
     domandaSelezionata = questionsMedium[indiceCasuale];
-  } else {
+  } else if (ottieniDifficolta() === 3) {
     domandaSelezionata = questionsHard[indiceCasuale];
   }
   const divQuestion = document.getElementById('domande');
@@ -531,6 +531,7 @@ function generaDomanda() {
         question: domandaSelezionata.question,
         givenAnswer: answer,
         correctAnswer: domandaSelezionata.correct_answer,
+        incorrectAnswers: domandaSelezionata.incorrect_answers,
         isCorrect: isCorrect,
       });
 

@@ -64,8 +64,8 @@ function setDifficultyEasy() {
   const diff = JSON.parse(localStorage.getItem('difficulty')) || {
     selected: 0,
   };
-  if (diff.selected >= 1) {
-    diff.selected = 0;
+  if (diff.selected != 1) {
+    diff.selected = 1;
   }
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
@@ -74,8 +74,8 @@ function setDifficultyMedium() {
   const diff = JSON.parse(localStorage.getItem('difficulty')) || {
     selected: 0,
   };
-  if (diff.selected === 0 || diff.selected === 2) {
-    diff.selected = 1;
+  if (diff.selected === 1 || diff.selected === 3) {
+    diff.selected = 2;
   }
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
@@ -84,17 +84,22 @@ function setDifficultyHard() {
   const diff = JSON.parse(localStorage.getItem('difficulty')) || {
     selected: 0,
   };
-  if (diff.selected === 0 || diff.selected === 1) {
-    diff.selected = 2;
+  if (diff.selected === 1 || diff.selected === 2) {
+    diff.selected = 3;
   }
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
 
 function proceed(e) {
   e.preventDefault();
-  if (checkbox.checked) {
-    window.location.href = 'index-2.html';
-  } else {
+  const diff = JSON.parse(localStorage.getItem('difficulty')) || {
+    selected: 0,
+  };
+  if (!checkbox.checked) {
     window.alert('Check the promise box');
+  } else if (diff.selected === 0) {
+    window.alert('Select a difficulty level');
+  } else {
+    window.location.href = 'index-2.html';
   }
 }
