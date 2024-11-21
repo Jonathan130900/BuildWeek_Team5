@@ -294,6 +294,7 @@ const questionsHard = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
+  disableBack();
   inizializzaPunteggio();
   iniziaCountdown();
 });
@@ -309,6 +310,14 @@ let domandeMostrate = [];
 let contatoreDomande = 0;
 const contatoreDisplay = document.getElementById('contatoreDomande');
 const questionsContainer = document.getElementById('domandeContainer');
+
+function disableBack() {
+  window.history.forward();
+}
+setTimeout('disableBack()', 0);
+window.onunload = function () {
+  null;
+};
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
