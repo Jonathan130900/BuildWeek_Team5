@@ -108,7 +108,10 @@ textarea {
 #btnNextPage1,
 #btnNextPage2,
 #btnRate,
-#btnFeedback {
+#btnFeedback 
+#btnRate,
+#btnFeedback
+ {
   width: 15rem;
   height: 3rem;
   font-size: 1.5rem;
@@ -128,9 +131,13 @@ textarea {
   height: 200px;
 }
 #btnAnswers {
-  width: 10em;
+  border-radius: 10px 10px 10px 10px;
+  width: 12em;
   height: 2em;
-  font-size: 2em;
+  font-size: 1em;
+}
+#domande h3 {
+  font-size: 30px;
 }
 
 /* Pulsante corretto */
@@ -163,14 +170,14 @@ button:disabled.incorrect-answer {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #B10087;
 }
 
 #contatoreDomande {
+  bottom: 25%;
+  margin-top: 150px;
   font-size: 2rem;
   font-weight: 600;
-  margin-top: 100px;
-  margin-bottom: 5px;
 }
 
 .fineTimer {
@@ -192,6 +199,7 @@ button:hover {
   align-items: center;
   justify-content: center;
 }
+
 
 /* CSS Index-3 PIECHART */
 
