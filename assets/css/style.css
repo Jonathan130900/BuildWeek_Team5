@@ -108,10 +108,8 @@ textarea {
 #btnNextPage1,
 #btnNextPage2,
 #btnRate,
-#btnFeedback 
-#btnRate,
-#btnFeedback
- {
+#btnFeedback #btnRate,
+#btnFeedback {
   width: 15rem;
   height: 3rem;
   font-size: 1.5rem;
@@ -130,25 +128,37 @@ textarea {
   width: 200px;
   height: 200px;
 }
-#btnAnswers {
-  border-radius: 10px 10px 10px 10px;
-  width: 12em;
-  height: 2em;
-  font-size: 1em;
+#btnAnswers,
+#incorrectAnswer,
+#correctAnswer {
+  border-radius: 50px;
+  width: 17em;
+  height: 5em;
+  font-size: 1.5em;
+  padding: 5px;
+  line-height: 25px;
+  margin: 20px 30px;
+  background-color: #ffffff0f;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 2px 5px 10px #c2128d, 2px 5px 30px #c2128d;
+  border: 2px solid #c2128d;
 }
+
 #domande h3 {
   font-size: 30px;
 }
 
 /* Pulsante corretto */
-.correct-answer {
-  background-color: green;
+#correctAnswer {
+  /* background-color: rgba(98, 235, 98, 0.5); */
+  border: 5px solid rgb(17, 236, 17);
   color: white;
 }
 
 /* Pulsante errato */
-.incorrect-answer {
-  background-color: red;
+#incorrectAnswer {
+  border: 5px solid red;
   color: white;
 }
 
@@ -170,14 +180,15 @@ button:disabled.incorrect-answer {
 }
 
 button:hover {
-  background-color: #B10087;
+  background-color: #b10087;
 }
 
 #contatoreDomande {
   bottom: 25%;
-  margin-top: 150px;
   font-size: 2rem;
   font-weight: 600;
+  position: fixed;
+  bottom: 150px;
 }
 
 .fineTimer {
@@ -190,6 +201,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  left: 25%;
+  right: 25%;
 }
 
 #domande h2 {
@@ -200,6 +214,14 @@ button:hover {
   justify-content: center;
 }
 
+#btnDiv {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+}
 
 /* CSS Index-3 PIECHART */
 
@@ -256,7 +278,7 @@ button:hover {
   width: 30%;
   height: 300px;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 18px;
@@ -273,6 +295,23 @@ button:hover {
 
 #chartText p {
   font-size: 1em;
+}
+
+#rainCanvas {
+  position: fixed;
+  top: 1px;
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+}
+
+#listaRisposte {
+  list-style: none;
+  padding: 0;
+}
+
+#answerLi {
+  border-bottom: 2px solid #c2128d;
 }
 
 #buttonContainer {

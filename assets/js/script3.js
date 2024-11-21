@@ -99,11 +99,13 @@ function ottieniDomande() {
 
   risultatoContainer.style.marginTop = '100px';
   const listaRisposte = document.createElement('ul');
+  listaRisposte.id = 'listaRisposte';
   listaRisposte.innerHTML = `
-    <p>Questions details:</p>`;
-  listaRisposte.style.listStyle = 'none';
+  <p>Questions details:</p>`;
+
   data.answers.forEach((risposta, index) => {
     const listItem = document.createElement('li');
+    listItem.id = 'answerLi';
 
     // Aggiungere la domanda e le risposte
     listItem.innerHTML = `

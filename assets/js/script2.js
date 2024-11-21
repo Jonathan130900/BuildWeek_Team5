@@ -92,6 +92,9 @@ const questions = [
     correct_answer: 'Java',
     incorrect_answers: ['Python', 'C', 'Jakarta'],
   },
+];
+
+const questionHard = [
   {
     category: 'Science: Computers',
     type: 'multiple',
@@ -382,6 +385,8 @@ function generaDomanda() {
   shuffleArray(answers);
 
   const buttons = [];
+  const btnDiv = document.createElement('div');
+  btnDiv.id = 'btnDiv';
   answers.forEach((answer) => {
     const btnAnswer = document.createElement('button');
     btnAnswer.textContent = answer;
@@ -396,10 +401,10 @@ function generaDomanda() {
 
       const isCorrect = answer === domandaSelezionata.correct_answer;
       if (isCorrect) {
-        btnAnswer.classList.add('correct-answer');
+        btnAnswer.id = 'correctAnswer';
         data.score += 1;
       } else {
-        btnAnswer.classList.add('incorrect-answer');
+        btnAnswer.id = 'incorrectAnswer';
       }
 
       data.answers.push({
@@ -418,6 +423,7 @@ function generaDomanda() {
     });
 
     buttons.push(btnAnswer);
-    divQuestion.appendChild(btnAnswer);
+    btnDiv.appendChild(btnAnswer);
   });
+  divQuestion.appendChild(btnDiv);
 }
