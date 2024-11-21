@@ -50,4 +50,4 @@ function submitRating() {
 
   // Resetta il campo feedback
   document.getElementById('feedback').value = '';
-}
+
