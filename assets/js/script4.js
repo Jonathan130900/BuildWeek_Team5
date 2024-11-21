@@ -41,7 +41,7 @@ function submitRating() {
   } else {
     alert(`Grazie per la tua valutazione di ${selectedRating} stelle!`);
     window.location.href = '/index.html';
-  }
+  }}
   // Reset delle stelle
   selectedRating = 0;
   txtFeedback.textContent = '';
@@ -51,6 +51,7 @@ function submitRating() {
   document.getElementById('feedback').value = '';
 
 
-btnFeedback.addEventListener('click', () => {
-  submitRating();
-});
+  btnFeedback.addEventListener('click', () => {
+    submitRating();
+  }
+  );
