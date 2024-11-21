@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,6 +21,7 @@
   <body>
     <header>
       <img src="assets/img/epicode_logo.png" alt="Logo Epicode" />
+      <div id="google_translate_element"></div>
     </header>
     <main id="welcomePage">
       <h1 id="title">Welcome to <span>your exam</span></h1>
@@ -51,6 +52,19 @@
         <button type="button" id="btnNextPage1">PROCEED</button>
       </section>
     </main>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'it,fr,es,de', // Lingue supportate
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          'google_translate_element'
+        );
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script src="assets/js/script1.js"></script>
   </body>
