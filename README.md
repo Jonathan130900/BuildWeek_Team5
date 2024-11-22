@@ -18,7 +18,7 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
   <h3>Page 2</h3>
     <hr>
 <li>
-  In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question. 
+  In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. <strong>Answer the question before time goes to 0</strong>; in that case the page will automatically pass to the next question. 
   <br><br>
   You will receive a visual feedback on the button if the answer is correct or wrong.
   <br><br>
