@@ -57,6 +57,8 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
     <li>
       Selecting a star rating, there will be a sound effect at every selection.
     </li>
+  <br>
+    Clicking on the Button will submit your rating and redirect you to your first page
 
 
 
