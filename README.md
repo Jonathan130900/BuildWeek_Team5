@@ -8,13 +8,15 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
 
 ## How to use
 
-###Page 1
+<h3>Page 1</h3>
+<hr>
 <ul>
 <li>
   Once opened the page, in front of you there's a section with a <strong>required</strong> difficulty selection, then a checkmark with a promise to answer without help. Once clicked on the <i>proceed</i> button <strong>YOU CAN'T GO BACK TO THE FIRST PAGE, BE CAREFULL</strong>.
 </li>
   <br>
-  <h4>page 2<h4>
+  <h3>page 2<h3>
+    <hr>
 <li>
   In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question. 
   <br>
