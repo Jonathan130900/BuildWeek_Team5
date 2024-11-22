@@ -33,8 +33,19 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
     <li>
       The third page is the place where magic appears, a confetti effect will pop on the screen and a happy sound effect will be reproduced, showing you a doughnut chart made with <strong>CHART.JS</strong>.
       <br><br>
-      Scrolling down on the page you will have a list of the questions with:<br> All the answers,<br> Your answer,<br> The correct answer,<br> If you answered correct or wrong
-    </li>
+      Scrolling down on the page you will have a list of the questions with:
+      <ul> 
+        <li>All the answers</li> 
+        <li>
+        Your answer
+        </li>
+        <li>
+        The correct answer
+        </li>
+        <li>
+        If you answered correct or wrong
+        </li>
+        </li>
 
 
 ***
