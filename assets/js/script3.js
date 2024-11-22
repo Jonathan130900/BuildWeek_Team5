@@ -193,8 +193,7 @@ function resultText() {
 }
 
 btnRate.addEventListener('click', function () {
-  window.location.href = 'index-4.html';
-  resetLocalStorage();
+  window.location.replace('index-4.html');
 });
 
 //Funzione per mostrare a schermo la percentuale giusta
@@ -213,15 +212,4 @@ function uncorrectPercentage() {
   const percentageWrong = `${wrongPercentage}%`;
   newP.innerText = percentageWrong;
   wrong.appendChild(newP);
-}
-
-//Funzione per resettare il localstorage
-function resetLocalStorage() {
-  localStorage.setItem(
-    'quizResults',
-    JSON.stringify({
-      score: 0,
-      answers: [],
-    })
-  );
 }

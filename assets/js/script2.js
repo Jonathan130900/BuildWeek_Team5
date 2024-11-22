@@ -292,9 +292,22 @@ const questionsHard = [
     incorrect_answers: ['Microsoft', 'Apple', 'Netscape'],
   },
 ];
+// Impedisce di tornare indietro nella pagina
+let isNavigatingToResults = false;
+
+// Cancella il localStorage al refresh della pagina, ma non al click su "Go to Results"
+const preservedDifficulty = localStorage.getItem('difficulty'); // Salva la difficoltà
+window.addEventListener('beforeunload', () => {
+  if (!isNavigatingToResults) {
+    localStorage.clear(); // Resetta tutto
+
+    if (preservedDifficulty) {
+      localStorage.setItem('difficulty', preservedDifficulty); // Ripristina la difficoltà
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-  // disableBack();
   inizializzaPunteggio();
   iniziaCountdown();
 });
@@ -310,19 +323,6 @@ let domandeMostrate = [];
 let contatoreDomande = 0;
 const contatoreDisplay = document.getElementById('contatoreDomande');
 const questionsContainer = document.getElementById('domandeContainer');
-
-// function disableBack() {
-//   window.history.forward();
-// }
-// setTimeout('disableBack()', 0);
-// window.onbeforeunload = function () {
-//   const data = {
-//     score: 0,
-//     answers: [],
-//   };
-//   localStorage.setItem('quizResults', JSON.stringify(data));
-//   return `Want to leave the page? <br> You will lost all your progress! `
-// };
 
 function iniziaCountdown() {
   contatoreDisplay.style.display = 'none';
@@ -473,7 +473,12 @@ function generaDomanda() {
     bottoneProssimaPagina.textContent = 'Go to Results';
     bottoneProssimaPagina.id = 'btnNextPage2';
     bottoneProssimaPagina.addEventListener('click', () => {
-      window.location.href = 'index-3.html';
+      isNavigatingToResults = true;
+      const preservedData = localStorage.getItem('quizResults');
+      if (preservedData) {
+        localStorage.setItem('quizResults', preservedData);
+      }
+      window.location.replace('index-3.html');
     });
 
     divDomanda.appendChild(bottoneProssimaPagina);

@@ -26,7 +26,6 @@
   <body>
     <header>
       <img src="assets/img/epicode_logo.png" alt="Logo Epicode" />
-      <div id="google_translate_element"></div>
     </header>
     <main id="resultPage">
       <h1>Results</h1>
@@ -60,19 +59,13 @@
       <div id="answersRecap">
         <p id="answersList"></p>
       </div>
+      <p id="goUpButton">
+        <a href="#">
+          <i class="fa-solid fa-arrow-up"></i> click to go up!
+          <i class="fa-solid fa-arrow-up"></i>
+        </a>
+      </p>
     </main>
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement(
-          {
-            pageLanguage: 'en',
-            includedLanguages: 'it,fr,es,de', // Lingue supportate
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          },
-          'google_translate_element'
-        );
-      }
-    </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>

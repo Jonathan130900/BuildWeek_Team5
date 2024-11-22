@@ -1,11 +1,11 @@
 const btnNext = document.getElementById('btnNextPage1');
 const checkbox = document.getElementById('checkbox');
 const difficultyDiv = document.getElementById('difficulty');
+const baseDiff = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
   difficulty();
   selectDifficulty();
-  previousSelected();
 });
 btnNext.addEventListener('click', proceed);
 
@@ -62,28 +62,12 @@ function selectDifficulty() {
 }
 
 function difficulty() {
-  const diff = JSON.parse(localStorage.getItem('difficulty')) || {
-    selected: 0,
-  };
   localStorage.setItem('difficulty', JSON.stringify(diff));
 }
 
 const diff = JSON.parse(localStorage.getItem('difficulty')) || {
   selected: 0,
 };
-
-function previousSelected() {
-  const diff = JSON.parse(localStorage.getItem('difficulty')) || {
-    selected: 0,
-  };
-  if (diff.selected === 1) {
-    easy.id = 'selected';
-  } else if (diff.selected === 2) {
-    medium.id = 'selected';
-  } else if (diff.selected === 3) {
-    hard.id = 'selected';
-  }
-}
 
 function setDifficultyEasy() {
   diff.selected = 1;
@@ -109,6 +93,6 @@ function proceed(e) {
   } else if (diff.selected === 0) {
     window.alert('Select a difficulty level');
   } else {
-    window.location.href = 'index-2.html';
+    window.location.replace('index-2.html');
   }
 }

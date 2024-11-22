@@ -16,7 +16,9 @@ stars.forEach((star) => {
   });
 
   star.addEventListener('click', () => {
+    const clickSound = new Audio('/assets/audio/coinSound.mp3');
     selectedRating = parseInt(star.getAttribute('data-value'));
+    clickSound.play();
     updateStars(selectedRating);
   });
 });
@@ -43,9 +45,10 @@ function submitRating() {
   // Reset delle stelle
   selectedRating = 0;
   updateStars(selectedRating);
-  window.location.href = '/index.html';
+  window.location.replace('/index.html');
 }
 
 btnFeedback.addEventListener('click', () => {
+  localStorage.clear();
   submitRating();
 });

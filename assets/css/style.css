@@ -317,11 +317,24 @@ button:hover {
   text-align: center;
 }
 
-#resultPage p {
+#resultPage {
+  padding-bottom: 30px;
+}
+
+#resultPage p,
+#goUpButton {
   text-align: center;
   font-size: 25px;
   margin-top: 10px;
   margin-bottom: 0;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: white;
+  text-decoration: none;
 }
 
 #resultsPercentage {
