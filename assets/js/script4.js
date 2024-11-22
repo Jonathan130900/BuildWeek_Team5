@@ -17,6 +17,7 @@ stars.forEach((star) => {
 
   star.addEventListener('click', () => {
     const clickSound = new Audio('/assets/audio/coinSound.mp3');
+    clickSound.volume = 0.5;
     selectedRating = parseInt(star.getAttribute('data-value'));
     clickSound.play();
     updateStars(selectedRating);
