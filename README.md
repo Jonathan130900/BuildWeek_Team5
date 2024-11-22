@@ -13,7 +13,14 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
 </li>
   <br>
 <li>
-  In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question.
+  In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question. 
+  <br>
+  You will receive a visual feedback on the button if the answer is correct or wrong.
+  <br>
+  Try to answer at leaste the half of the question correct to pass the test.
+</li>
+<li>
+  Once answered to all the questions a button will appear, permitting you to navigate to the result page and see the magic!
 </li>
 
 
