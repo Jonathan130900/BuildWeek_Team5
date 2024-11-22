@@ -49,6 +49,14 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
       <br>
       Clicking on the 'go Up' text will bring you back to the top of the page.
         </li>
+    <h3>Page 4</h3>
+    <hr>
+    <li>
+      The fourth page is the <strong>Rate Us</strong> page, showing up to 10 stars and a the possibility to leave a comment.  
+    </li>
+    <li>
+      Selecting a star rating, there will be a sound effect at every selection.
+    </li>
 
 
 ***
