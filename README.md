@@ -15,7 +15,7 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
   Once opened the page, in front of you there's a section with a <strong>required</strong> difficulty selection, then a checkmark with a promise to answer without help. Once clicked on the <i>proceed</i> button <strong>YOU CAN'T GO BACK TO THE FIRST PAGE, BE CAREFULL</strong>.
 </li>
   <br>
-  <h3>Page 2<h3>
+  <h3>Page 2</h3>
     <hr>
 <li>
   In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question. 
@@ -28,7 +28,7 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
 <li>
   Once answered to all the questions a button will appear, permitting you to navigate to the result page and see the magic!
 </li>
-  <h3>Page 3<h3>
+  <h3>Page 3</h3>
     <hr>
     <li>
       The third page is the place where magic appears, a confetti effect will pop on the screen and a happy sound effect will be reproduced, showing you a doughnut chart made with <strong>CHART.JS</strong>.
