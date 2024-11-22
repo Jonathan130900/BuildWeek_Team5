@@ -19,6 +19,7 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
   <br>
   Try to answer at leaste the half of the question correct to pass the test.
 </li>
+  <br>
 <li>
   Once answered to all the questions a button will appear, permitting you to navigate to the result page and see the magic!
 </li>
