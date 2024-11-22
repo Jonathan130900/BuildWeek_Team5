@@ -8,9 +8,9 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
 
 ## How to use
 
-<hr>
 <ul>
 <h3>Page 1</h3>
+<hr>
 <li>
   Once opened the page, in front of you there's a section with a <strong>required</strong> difficulty selection, then a checkmark with a promise to answer without help. Once clicked on the <i>proceed</i> button <strong>YOU CAN'T GO BACK TO THE FIRST PAGE, BE CAREFULL</strong>.
 </li>
