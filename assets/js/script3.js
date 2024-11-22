@@ -10,15 +10,13 @@ const punteggioTotale = 10;
 const rightPercentage = (punteggioFinale / punteggioTotale) * 100;
 const wrongPercentage = 100 - rightPercentage;
 
-document.addEventListener('load', init());
-
-function init() {
+document.addEventListener('DOMContentLoaded', () => {
   flowchart(rightPercentage, wrongPercentage);
   correctPercentage();
   uncorrectPercentage();
   ottieniDomande();
   resultText();
-}
+});
 
 function ottieniPunteggio() {
   const data = JSON.parse(localStorage.getItem('quizResults'));

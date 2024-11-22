@@ -308,6 +308,7 @@ window.addEventListener('beforeunload', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  localStorage.removeItem('quizResults');
   inizializzaPunteggio();
   iniziaCountdown();
 });
