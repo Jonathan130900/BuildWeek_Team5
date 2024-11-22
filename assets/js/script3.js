@@ -183,8 +183,6 @@ function resultText() {
     newH4.innerHTML = `We're sorry! <br> You didn't pass the exam.`;
     chartText.appendChild(newH4);
   }
-
-  // Stile aggiuntivo per il testo (opzionale)
   newH4.style.textAlign = 'center';
   newH4.style.color = punteggioFinale > punteggioTotale / 2 ? 'green' : 'red';
   newP.style.textAlign = 'center';

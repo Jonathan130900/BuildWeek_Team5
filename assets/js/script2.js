@@ -430,7 +430,8 @@ function resetTimer() {
   aggiornaTimer();
   timerInterval = setInterval(aggiornaTimer, 1000);
 }
-
+// Randomizza gli oggetti dell'array cambiandoli dinamicamente di posizione.
+// Le domande appaiono sempre da indice 0 a salire ma la loro posizione cambia ad ogni refresh della pagina
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -443,15 +444,6 @@ function inizializzaPunteggio() {
     score: 0,
     answers: [],
   };
-  localStorage.setItem('quizResults', JSON.stringify(data));
-}
-
-function aggiornaPunteggio() {
-  const data = JSON.parse(localStorage.getItem('quizResults')) || {
-    score: 0,
-    answers: [],
-  };
-  data.score += 1;
   localStorage.setItem('quizResults', JSON.stringify(data));
 }
 
@@ -488,15 +480,17 @@ function generaDomanda() {
 
   let indiceCasuale;
 
-  if (ottieniDifficolta() === 0) {
+  //Ottiene un numero casuale tra 0 e la lunghezza dell'array e lo restituisce fintantochè non sono stati estratti tutti i numeri
+  //salva il nuero estratto in un array in modo che nessun numero venga chiamato due volte
+  if (ottieniDifficolta() === 1) {
     do {
       indiceCasuale = Math.floor(Math.random() * questions.length);
     } while (domandeMostrate.includes(indiceCasuale));
-  } else if (ottieniDifficolta() === 1) {
+  } else if (ottieniDifficolta() === 2) {
     do {
       indiceCasuale = Math.floor(Math.random() * questionsMedium.length);
     } while (domandeMostrate.includes(indiceCasuale));
-  } else {
+  } else if (ottieniDifficolta() === 3) {
     do {
       indiceCasuale = Math.floor(Math.random() * questionsHard.length);
     } while (domandeMostrate.includes(indiceCasuale));
@@ -515,6 +509,7 @@ function generaDomanda() {
   } else if (ottieniDifficolta() === 3) {
     domandaSelezionata = questionsHard[indiceCasuale];
   }
+
   const divQuestion = document.getElementById('domande');
   divQuestion.innerHTML = `<h3>${domandaSelezionata.question}</h3>`;
 
@@ -534,10 +529,7 @@ function generaDomanda() {
     btnAnswer.addEventListener('click', () => {
       buttons.forEach((btn) => (btn.disabled = true));
 
-      const data = JSON.parse(localStorage.getItem('quizResults')) || {
-        score: 0,
-        answers: [],
-      };
+      const data = JSON.parse(localStorage.getItem('quizResults'));
 
       const isCorrect = answer === domandaSelezionata.correct_answer;
       if (isCorrect) {

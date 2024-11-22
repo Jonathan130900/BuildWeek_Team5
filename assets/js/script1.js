@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   difficulty();
   selectDifficulty();
 });
+
 btnNext.addEventListener('click', proceed);
 
 checkbox.addEventListener('change', () => {
@@ -50,9 +51,9 @@ function selectDifficulty() {
     if (diff.selected != 3) {
       setDifficultyHard();
     }
-    hard.id = 'selected';
     easy.id = 'easyButton';
     medium.id = 'mediumButton';
+    hard.id = 'selected';
   });
 
   difficultyDiv.appendChild(newH4);
