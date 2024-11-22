@@ -19,15 +19,22 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
     <hr>
 <li>
   In the second page, there's a 3 sec countdown before questions popping. Than will appear a timer on the up-right side of the page starts counting down. **Answer the question before time goes to 0**; in that case the page will automatically pass to the next question. 
-  <br>
+  <br><br>
   You will receive a visual feedback on the button if the answer is correct or wrong.
-  <br>
+  <br><br>
   Try to answer at leaste the half of the question correct to pass the test.
 </li>
   <br>
 <li>
   Once answered to all the questions a button will appear, permitting you to navigate to the result page and see the magic!
 </li>
+  <h3>page 3<h3>
+    <hr>
+    <li>
+      The third page is the place where magic appears, a confetti effect will pop on the screen and a happy sound effect will be reproduced, showing you a doughnut chart made with <strong>CHART.JS</strong>.
+      <br><br>
+      Scrolling down on the page you will have a list of the questions with:<br> All the answers,<br> Your answer,<br> The correct answer,<br> If you answered correct or wrong
+    </li>
 
 
 ***
