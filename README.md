@@ -51,6 +51,7 @@ The following Repo emulates the benchmark proposed by EPICODE to its students.
         </li>
     <h3>Page 4</h3>
     <hr>
+    <br><br>
     <ul>
     <li>
       The fourth page is the <strong>Rate Us</strong> page, showing up to 10 stars and a the possibility to leave a comment.  
